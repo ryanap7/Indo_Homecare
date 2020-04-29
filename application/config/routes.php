@@ -56,13 +56,43 @@ $route['auth'] = 'Auth';
 // ------------------------------------------------------------------------
 // Admin
 // ------------------------------------------------------------------------
-$route['admin/dashboard']				= 'Admin/DashboardController';
-$route['a/rt']							= 'Admin/RT_Controller';
-$route['a/rt/add']						= 'Admin/RT_Controller/add';
-$route['a/rt/insert']					= 'Admin/RT_Controller/insert';
-$route['a/rt/edit/(:any)']				= 'Admin/RT_Controller/edit/$1';
-$route['a/rt/update']					= 'Admin/RT_Controller/update';
-$route['a/rt/delete/(:any)']			= 'Admin/RT_Controller/delete/$1';
+$route['admin/dashboard']				        = 'Admin/DashboardController';
+
+$route['admin/member']							= 'Admin/MemberController';
+$route['admin/member/registration']				= 'Admin/MemberController/create';
+$route['admin/member/url']				        = 'Admin/MemberController/url';
+$route['admin/member/store']					= 'Admin/MemberController/store';
+$route['admin/member/edit/(:any)']				= 'Admin/MemberController/edit/$1';
+$route['admin/member/update']					= 'Admin/MemberController/update';
+$route['admin/member/delete/(:any)']			= 'Admin/MemberController/delete/$1';
+
+$route['admin/trainer']							= 'Admin/TrainerController';
+$route['admin/trainer/create']					= 'Admin/TrainerController/create';
+$route['admin/trainer/store']					= 'Admin/TrainerController/store';
+$route['admin/trainer/edit/(:any)']				= 'Admin/TrainerController/edit/$1';
+$route['admin/trainer/update']					= 'Admin/TrainerController/update';
+$route['admin/trainer/delete/(:any)']			= 'Admin/TrainerController/delete/$1';
+
+$route['admin/membership']						= 'Admin/MembershipController';
+$route['admin/membership/create']				= 'Admin/MembershipController/create';
+$route['admin/membership/store']				= 'Admin/MembershipController/store';
+$route['admin/membership/edit/(:any)']			= 'Admin/MembershipController/edit/$1';
+$route['admin/membership/update']				= 'Admin/MembershipController/update';
+$route['admin/membership/delete/(:any)']		= 'Admin/MembershipController/delete/$1';
+
+$route['admin/payment']							= 'Admin/PaymentController';
+$route['admin/payment/create']					= 'Admin/PaymentController/create';
+$route['admin/payment/store']					= 'Admin/PaymentController/store';
+$route['admin/payment/edit/(:any)']				= 'Admin/PaymentController/edit/$1';
+$route['admin/payment/update']					= 'Admin/PaymentController/update';
+$route['admin/payment/delete/(:any)']			= 'Admin/PaymentController/delete/$1';
+
+$route['admin/fee']	    						= 'Admin/FeeController';
+$route['admin/fee/create']	    				= 'Admin/FeeController/create';
+$route['admin/fee/store']		    			= 'Admin/FeeController/store';
+$route['admin/fee/edit/(:any)']		    		= 'Admin/FeeController/edit/$1';
+$route['admin/fee/update']				    	= 'Admin/FeeController/update';
+$route['admin/fee/delete/(:any)']		    	= 'Admin/FeeController/delete/$1';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
