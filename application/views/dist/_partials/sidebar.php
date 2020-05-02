@@ -4,11 +4,56 @@
 	<div class="main-sidebar sidebar-style-2">
 		<aside id="sidebar-wrapper">
 			<div class="sidebar-brand">
-				<a href="<?php echo base_url(); ?>dist/index">Stisla</a>
+				<a href="<?php echo base_url(); ?>dist/index">Indo HomeCare</a>
 			</div>
 			<div class="sidebar-brand sidebar-brand-sm">
-				<a href="<?php echo base_url(); ?>dist/index">St</a>
+				<a href="<?php echo base_url(); ?>dist/index">IHC</a>
 			</div>
+			<?php if ($this->session->userdata('role') === '1') {  ?>
+			<ul class="sidebar-menu">
+				<li class="menu-header">Dashboard</li>
+				<li class="<?= $this->uri->segment(2) == 'dashboard' ? 'active' : ''; ?>">
+					<a class="nav-link" href="<?= base_url('superadmin/dashboard') ?>">
+						<i class="fas fa-fire"></i> 
+						<span>Dashboard</span>
+					</a>
+				</li>
+				<li class="menu-header">Hak Akses</li>
+				<li class="<?= $this->uri->segment(2) == 'admin' ? 'active' : ''; ?>">
+					<a class="nav-link" href="<?= base_url('superadmin/admin') ?>">
+						<i class="fas fa-user"></i> 
+						<span>Data Admin</span>
+					</a>
+				</li>
+				<li class="menu-header">Data Master</li>
+				<li class="<?= $this->uri->segment(2) == 'client'  ? 'active' : ''; ?>">
+					<a class="nav-link" href="<?= base_url('superadmin/client') ?>">
+						<i class="fas fa-user"></i> 
+						<span>Data Client</span>
+					</a>
+				</li>
+				<li class="<?= $this->uri->segment(2) == 'service'  ? 'active' : ''; ?>">
+					<a class="nav-link" href="<?= base_url('superadmin/service') ?>">
+						<i class="fas fa-list"></i> 
+						<span>Data Layanan</span>
+					</a>
+				</li>
+				<li class="<?= $this->uri->segment(2) == 'report'  ? 'active' : ''; ?>">
+					<a class="nav-link" href="<?= base_url('admin/report') ?>">
+						<i class="fas fa-file"></i> 
+						<span>Laporan Keuangan</span>
+					</a>
+				</li>
+				<li class="menu-header">Setting</li>
+				<li class="<?= $this->uri->segment(2) == 'fee'  ? 'active' : ''; ?>">
+					<a class="nav-link" href="<?= base_url('admin/fee') ?>">
+						<i class="fas fa-sign-out-alt"></i> 
+						<span>Logout</span>
+					</a>
+				</li>
+			</ul>
+			<?php } ?>
+			<?php if ($this->session->userdata('role') === '2') {  ?>
 			<ul class="sidebar-menu">
 				<li class="menu-header">Dashboard</li>
 				<li class="<?= $this->uri->segment(2) == 'dashboard' ? 'active' : ''; ?>">
@@ -17,61 +62,72 @@
 						<span>Dashboard</span>
 					</a>
 				</li>
-			
-				<li class="menu-header">Member</li>
-				<li class="<?= $this->uri->segment(2) == 'member' ? 'active' : ''; ?>">
-					<a class="nav-link" href="<?= base_url('admin/member/registration') ?>">
-						<i class="fa fa-edit"></i> 
-						<span>Registration</span>
+				<li class="menu-header">Data Master</li>
+				<li class="<?= $this->uri->segment(2) == 'client'  ? 'active' : ''; ?>">
+					<a class="nav-link" href="<?= base_url('admin/client') ?>">
+						<i class="fas fa-user"></i> 
+						<span>Data Client</span>
 					</a>
 				</li>
-				<li class="dropdown">
-					<a href="#" class="nav-link has-dropdown"><i class="fas fa-th"></i> <span>Member Data</span></a>
+				<li class="dropdown <?= $this->uri->segment(2) == 'service'  ? 'active' : ''; ?>">
+					<a href="<?= base_url('admin/service') ?>" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-list"></i> <span>Data Layanan</span></a>
 					<ul class="dropdown-menu">
-						<li class="">
-							<a class="nav-link" href="#">Member</a>
-						</li>
-						<li class="">
-							<a class="nav-link" href="">Non Member</a>
-						</li>
+						<li><a class="nav-link" href="#">Jasa Medis</a></li>
+						<li><a class="nav-link" href="#">Penunjang Medis</a></li>
 					</ul>
 				</li>
-			
-				<li class="menu-header">Master Data</li>
-				<li class="<?= $this->uri->segment(2) == 'trainer'  ? 'active' : ''; ?>">
-					<a class="nav-link" href="<?= base_url('admin/trainer') ?>">
-						<i class="fas fa-running"></i> 
-						<span>Trainer</span>
-					</a>
-				</li>
-				<li class="<?= $this->uri->segment(2) == 'membership'  ? 'active' : ''; ?>">
-					<a class="nav-link" href="<?= base_url('admin/membership') ?>">
-						<i class="fas fa-users"></i> 
-						<span>Membership</span>
-					</a>
-				</li>
-				<li class="<?= $this->uri->segment(2) == 'payment'  ? 'active' : ''; ?>">
-					<a class="nav-link" href="<?= base_url('admin/payment') ?>">
-						<i class="fas fa-credit-card"></i> 
-						<span>Payment Type</span>
-					</a>
-				</li>
-
-				<li class="menu-header">Transaction</li>
-				<li class="">
-					<a class="nav-link" href="#">
+				<li class="<?= $this->uri->segment(2) == 'invoice'  ? 'active' : ''; ?>">
+					<a class="nav-link" href="<?= base_url('admin/invoice') ?>">
 						<i class="fas fa-shopping-cart"></i> 
-						<span>Transaction</span>
+						<span>Transaksi</span>
 					</a>
 				</li>
-
+				<li class="<?= $this->uri->segment(2) == 'report'  ? 'active' : ''; ?>">
+					<a class="nav-link" href="<?= base_url('admin/report') ?>">
+						<i class="fas fa-file"></i> 
+						<span>Laporan Keuangan</span>
+					</a>
+				</li>
 				<li class="menu-header">Setting</li>
 				<li class="<?= $this->uri->segment(2) == 'fee'  ? 'active' : ''; ?>">
 					<a class="nav-link" href="<?= base_url('admin/fee') ?>">
-						<i class="fas fa-money-check-alt"></i> 
-						<span>Fee</span>
+						<i class="fas fa-sign-out-alt"></i> 
+						<span>Logout</span>
 					</a>
 				</li>
 			</ul>
+			<?php } ?>
+			<?php if ($this->session->userdata('role') === '3') {  ?>
+			<ul class="sidebar-menu">
+				<li class="menu-header">Dashboard</li>
+				<li class="<?= $this->uri->segment(2) == 'dashboard' ? 'active' : ''; ?>">
+					<a class="nav-link" href="<?= base_url('koordinator/dashboard') ?>">
+						<i class="fas fa-fire"></i> 
+						<span>Dashboard</span>
+					</a>
+				</li>
+				<li class="menu-header">Data Master</li>
+				<li class="<?= $this->uri->segment(2) == 'employees'  ? 'active' : ''; ?>">
+					<a class="nav-link" href="<?= base_url('koordinator/employees') ?>">
+						<i class="fas fa-users"></i> 
+						<span>Data Karyawan</span>
+					</a>
+				</li>
+				<li class="menu-header">Kalender</li>
+				<li class="<?= $this->uri->segment(2) == 'calendar'  ? 'active' : ''; ?>">
+					<a class="nav-link" href="<?= base_url('koordinator/calendar') ?>">
+						<i class="fas fa-calendar"></i> 
+						<span>Kalender</span>
+					</a>
+				</li>
+				<li class="menu-header">Setting</li>
+				<li class="<?= $this->uri->segment(2) == 'fee'  ? 'active' : ''; ?>">
+					<a class="nav-link" href="<?= base_url('auth/logout')?>">
+						<i class="fas fa-sign-out-alt"></i> 
+						<span>Logout</span>
+					</a>
+				</li>
+			</ul>
+			<?php } ?>
         </aside>
       </div>

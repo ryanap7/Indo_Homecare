@@ -85,7 +85,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <script src="<?php echo base_url(); ?>assets/js/page/components-table.js"></script>
   <script src="<?php echo base_url(); ?>assets/js/page/components-user.js"></script>
   <script src="<?php echo base_url(); ?>assets/js/page/forms-advanced-forms.js"></script>
-  <script src="<?php echo base_url(); ?>assets/js/page/modules-calendar.js"></script>
   <script src="<?php echo base_url(); ?>assets/js/page/modules-chartjs.js"></script>
   <script src="<?php echo base_url(); ?>assets/js/page/modules-datatables.js"></script>
   <script src="<?php echo base_url(); ?>assets/js/page/modules-ion-icons.js"></script>
@@ -117,23 +116,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   </script>
 
   <script>
-    function cek_database(){
-      var MEMBERSHIP_ID = $('#membership').val();
-      console.log(MEMBERSHIP_ID);
-      $.ajax({
-        url: '<?= base_url('admin/member/url')?>',
-        data: "MEMBERSHIP_ID="+MEMBERSHIP_ID,
-        success: function(data){
-        var json = data,
-        obj = JSON.stringify(json);
-        $('#price').val(obj.PRICE);
-        },
+    $("#myEvent").fullCalendar({
+      height: 'auto',
+      editable: true,
+      displayEventTime: false,
+      header: {
+        left: 'prev,next today',
+        center: 'title',
+        right: ''
+      },
+      events: "<?= base_url(); ?>koordinator/calendar/load",
+    });
+  </script>
 
-        select: function(event, ui){
-          $('name="price"').val(ui.PRICE);
-        }
-      });
-    }
   </script>
 </body>
 </html>

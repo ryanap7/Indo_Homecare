@@ -12,11 +12,11 @@ class DashboardController extends CI_Controller {
   	}
 
 	public function index() {
-		if ($this->session->userdata('role') === '2') {
+		if ($this->session->userdata('role') === '3') {
 			$data = array(
 				'title' => "Dashboard"
 			);
-			$this->load->view('pages/Admin/dashboard/index.php', $data);
+			$this->load->view('pages/Koordinator/dashboard/index.php', $data);
 		} else {
 			echo "
 				<script>

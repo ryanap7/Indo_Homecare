@@ -1,6 +1,6 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-$this->load->view('dist/_partials/header');
+    defined('BASEPATH') OR exit('No direct script access allowed');
+    $this->load->view('dist/_partials/header');
 ?>
     <div id="app">
         <section class="section">
@@ -14,10 +14,17 @@ $this->load->view('dist/_partials/header');
                             <div class="card-body">
                                 <form method="POST" action="<?= site_url('auth/login')?>" class="needs-validation" novalidate="">
                                     <div class="form-group">
-                                        <label for="pin">Pin</label>
-                                        <input id="pin" type="password" class="form-control" name="pin" tabindex="1" placeholder="Enter your PIN" required autofocus>
+                                        <label for="email">Email</label>
+                                        <input id="email" type="email" class="form-control" name="email" tabindex="1" placeholder="Enter your Email" required autofocus>
                                         <div class="invalid-feedback">
-                                            Please fill in your pin
+                                            Please fill in your email
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="password">Password</label>
+                                        <input id="password" type="password" class="form-control" name="password" tabindex="1" placeholder="Enter your Password" required>
+                                        <div class="invalid-feedback">
+                                            Please fill in your Password
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -29,7 +36,7 @@ $this->load->view('dist/_partials/header');
                             </div>
                         </div>
                         <div class="simple-footer">
-                            Copyright &copy; Gym Management System 2020
+                            Copyright &copy; Indo HomeCare 2020
                         </div>
                     </div>
                 </div>

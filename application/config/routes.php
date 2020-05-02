@@ -54,45 +54,56 @@ $route['default_controller'] = 'Auth';
 $route['auth'] = 'Auth';
 
 // ------------------------------------------------------------------------
-// Admin
+// SuperAdmin
 // ------------------------------------------------------------------------
-$route['admin/dashboard']				        = 'Admin/DashboardController';
+$route['superadmin/dashboard']				    = 'SuperAdmin/DashboardController';
 
-$route['admin/member']							= 'Admin/MemberController';
-$route['admin/member/registration']				= 'Admin/MemberController/create';
-$route['admin/member/url']				        = 'Admin/MemberController/url';
-$route['admin/member/store']					= 'Admin/MemberController/store';
-$route['admin/member/edit/(:any)']				= 'Admin/MemberController/edit/$1';
-$route['admin/member/update']					= 'Admin/MemberController/update';
-$route['admin/member/delete/(:any)']			= 'Admin/MemberController/delete/$1';
+$route['superadmin/admin']						= 'SuperAdmin/AdminController';
+$route['superadmin/admin/create']				= 'SuperAdmin/AdminController/create';
+$route['superadmin/admin/store']				= 'SuperAdmin/AdminController/store';
+$route['superadmin/admin/edit/(:any)']			= 'SuperAdmin/AdminController/edit/$1';
+$route['superadmin/admin/update']				= 'SuperAdmin/AdminController/update';
+$route['superadmin/admin/delete/(:any)']		= 'SuperAdmin/AdminController/delete/$1';
 
-$route['admin/trainer']							= 'Admin/TrainerController';
-$route['admin/trainer/create']					= 'Admin/TrainerController/create';
-$route['admin/trainer/store']					= 'Admin/TrainerController/store';
-$route['admin/trainer/edit/(:any)']				= 'Admin/TrainerController/edit/$1';
-$route['admin/trainer/update']					= 'Admin/TrainerController/update';
-$route['admin/trainer/delete/(:any)']			= 'Admin/TrainerController/delete/$1';
+// ------------------------------------------------------------------------
+// Admini
+// ------------------------------------------------------------------------
+$route['admin/dashboard']	        			= 'Admin/DashboardController';
 
-$route['admin/membership']						= 'Admin/MembershipController';
-$route['admin/membership/create']				= 'Admin/MembershipController/create';
-$route['admin/membership/store']				= 'Admin/MembershipController/store';
-$route['admin/membership/edit/(:any)']			= 'Admin/MembershipController/edit/$1';
-$route['admin/membership/update']				= 'Admin/MembershipController/update';
-$route['admin/membership/delete/(:any)']		= 'Admin/MembershipController/delete/$1';
+$route['admin/client']      					= 'Admin/ClientController';
+$route['admin/client/create']		        	= 'Admin/ClientController/create';
+$route['admin/client/store'] 		        	= 'Admin/ClientController/store';
+$route['admin/client/edit/(:any)']		        = 'Admin/ClientController/edit/$1';
+$route['admin/client/update']			        = 'Admin/ClientController/update';
+$route['admin/client/delete/(:any)']	        = 'Admin/ClientController/delete/$1';
 
-$route['admin/payment']							= 'Admin/PaymentController';
-$route['admin/payment/create']					= 'Admin/PaymentController/create';
-$route['admin/payment/store']					= 'Admin/PaymentController/store';
-$route['admin/payment/edit/(:any)']				= 'Admin/PaymentController/edit/$1';
-$route['admin/payment/update']					= 'Admin/PaymentController/update';
-$route['admin/payment/delete/(:any)']			= 'Admin/PaymentController/delete/$1';
+$route['admin/service']						= 'SuperAdmin/AdminController';
+$route['admin/service/create']				= 'SuperAdmin/AdminController/create';
+$route['superadmin/admin/store']				= 'SuperAdmin/AdminController/store';
+$route['superadmin/admin/edit/(:any)']			= 'SuperAdmin/AdminController/edit/$1';
+$route['superadmin/admin/update']				= 'SuperAdmin/AdminController/update';
+$route['superadmin/admin/delete/(:any)']		= 'SuperAdmin/AdminController/delete/$1';
 
-$route['admin/fee']	    						= 'Admin/FeeController';
-$route['admin/fee/create']	    				= 'Admin/FeeController/create';
-$route['admin/fee/store']		    			= 'Admin/FeeController/store';
-$route['admin/fee/edit/(:any)']		    		= 'Admin/FeeController/edit/$1';
-$route['admin/fee/update']				    	= 'Admin/FeeController/update';
-$route['admin/fee/delete/(:any)']		    	= 'Admin/FeeController/delete/$1';
+// ------------------------------------------------------------------------
+// Koordinator
+// ------------------------------------------------------------------------
+$route['koordinator/dashboard']				        = 'Koordinator/DashboardController';
+
+$route['koordinator/employees']	    				= 'Koordinator/EmployeesController';
+$route['koordinator/employees/create']  			= 'Koordinator/EmployeesController/create';
+$route['koordinator/employees/store']		    	= 'Koordinator/EmployeesController/store';
+$route['koordinator/employees/edit/(:any)']		    = 'Koordinator/EmployeesController/edit/$1';
+$route['koordinator/employees/update']			    = 'Koordinator/EmployeesController/update';
+$route['koordinator/employees/delete/(:any)']	    = 'Koordinator/EmployeesController/delete/$1';
+
+$route['koordinator/calendar']	    				= 'Koordinator/CalendarController';
+$route['koordinator/calendar/load']	    			= 'Koordinator/CalendarController/load';
+
+
+
+$route['profile/edit']				    = 'ProfileController/edit';
+$route['profile/update']				= 'ProfileController/update';
+$route['profile/changepassword']		= 'ProfileController/changepassword';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
