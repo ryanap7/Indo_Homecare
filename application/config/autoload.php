@@ -58,7 +58,7 @@ $autoload['packages'] = array();
 |
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
-$autoload['libraries'] = array('database','session', 'form_validation');
+$autoload['libraries'] = array('database','session', 'form_validation', 'cart', 'dompdf_gen');
 
 /*
 | -------------------------------------------------------------------
@@ -89,7 +89,7 @@ $autoload['drivers'] = array();
 |
 |	$autoload['helper'] = array('url', 'file');
 */
-$autoload['helper'] = array('url','form','file');
+$autoload['helper'] = array('url','form','file', 'rupiah');
 
 /*
 | -------------------------------------------------------------------
@@ -132,4 +132,4 @@ $autoload['language'] = array();
 |
 |	$autoload['model'] = array('first_model' => 'first');
 */
-$autoload['model'] = array('M_Role', 'M_Employees', 'M_Admin', 'M_Auth');
+$autoload['model'] = array('M_Role', 'M_Employees', 'M_Admin', 'M_Auth', 'M_Invoice');

@@ -70,18 +70,42 @@
 					</a>
 				</li>
 				<li class="dropdown <?= $this->uri->segment(2) == 'service'  ? 'active' : ''; ?>">
-					<a href="<?= base_url('admin/service') ?>" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-list"></i> <span>Data Layanan</span></a>
+					<a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-list"></i> <span>Data Layanan</span></a>
 					<ul class="dropdown-menu">
-						<li><a class="nav-link" href="#">Jasa Medis</a></li>
-						<li><a class="nav-link" href="#">Penunjang Medis</a></li>
+						<li><a class="nav-link" href="<?= base_url('admin/service') ?>">Jasa Medis</a></li>
+						<li><a class="nav-link" href="<?= base_url('admin/service/support') ?>">Penunjang Medis</a></li>
+						<li><a class="nav-link" href="<?= base_url('admin/service/package') ?>">Paket HomeCare</a></li>
+						<li><a class="nav-link" href="<?= base_url('admin/service/alkes') ?>">Peralatan Kesehatan</a></li>
 					</ul>
 				</li>
-				<li class="<?= $this->uri->segment(2) == 'invoice'  ? 'active' : ''; ?>">
-					<a class="nav-link" href="<?= base_url('admin/invoice') ?>">
-						<i class="fas fa-shopping-cart"></i> 
-						<span>Transaksi</span>
-					</a>
+				<li class="menu-header">Transaksi</li>
+				<li class="dropdown <?= $this->uri->segment(2) == 'ambulance'  ? 'active' : ''; ?>">
+					<a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fa fa-exchange-alt"></i> <span>Ambulance</span></a>
+					<ul class="dropdown-menu">
+						<li><a class="nav-link" href="<?= base_url('admin/ambulance') ?>">Status Ambulance</a></li>
+						<li><a class="nav-link" href="<?= base_url('admin/ambulance/sewa') ?>">Sewa Ambulance</a></li>
+						<li><a class="nav-link" href="<?= base_url('admin/ambulance/sewa/history') ?>">History</a></li>
+					</ul>
 				</li>
+				<li class="dropdown <?= $this->uri->segment(2) == 'alkes'  ? 'active' : ''; ?>">
+					<a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fa fa-exchange-alt"></i> <span>Peralatan Kesehatan</span></a>
+					<ul class="dropdown-menu">
+						<li><a class="nav-link" href="<?= base_url('admin/invoice/request') ?>">Permintaan Transaksi</a></li>
+						<li><a class="nav-link" href="<?= base_url('admin/invoice/failed') ?>">Transaksi Gagal</a></li>
+						<li><a class="nav-link" href="<?= base_url('admin/invoice') ?>">Transaksi Pending</a></li>
+						<li><a class="nav-link" href="<?= base_url('admin/invoice/success') ?>">Transaksi Sukses</a></li>
+					</ul>
+				</li>
+				<li class="dropdown <?= $this->uri->segment(2) == 'invoice'  ? 'active' : ''; ?>">
+					<a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fa fa-shopping-cart"></i> <span>Transaksi</span></a>
+					<ul class="dropdown-menu">
+						<li><a class="nav-link" href="<?= base_url('admin/invoice/request') ?>">Permintaan Transaksi</a></li>
+						<li><a class="nav-link" href="<?= base_url('admin/invoice/failed') ?>">Transaksi Gagal</a></li>
+						<li><a class="nav-link" href="<?= base_url('admin/invoice') ?>">Transaksi Pending</a></li>
+						<li><a class="nav-link" href="<?= base_url('admin/invoice/success') ?>">Transaksi Sukses</a></li>
+					</ul>
+				</li>
+				<li class="menu-header">Laporan</li>
 				<li class="<?= $this->uri->segment(2) == 'report'  ? 'active' : ''; ?>">
 					<a class="nav-link" href="<?= base_url('admin/report') ?>">
 						<i class="fas fa-file"></i> 

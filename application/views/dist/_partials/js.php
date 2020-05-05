@@ -129,6 +129,61 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     });
   </script>
 
+  <script>
+    $(document).ready(function(){
+      $('.add_cart').click(function(){
+        var id      = $(this).data("id");
+        var name    = $(this).data("name");
+        var sesi    = $(this).data("sesi");
+        var price   = $(this).data("price");
+
+        $.ajax({
+          url: "<?= base_url('admin/invoice/add_cart');?>",
+          method: "POST",
+          data: {id:id, name:name, sesi:sesi, price:price},
+
+          success:function(data){
+            alert("Success Added to Cart");
+            $('#cart_details').html(data);
+          }
+        });
+      });
+
+      $('#cart_details').load("<?= base_url('admin/invoice/load');?>");
+
+      $(document).on('click', '.remove', function(){
+        var row_id = $(this).attr("id");
+        if(confirm("Are you sure want to Cancel?"))
+        {
+          $.ajax({
+            url: "<?= base_url('admin/invoice/remove');?>",
+            method: "POST",
+            data: {row_id: row_id},
+            success:function(data){
+              alert("Success Remove from Cart");
+              $('#cart_details').html(data);
+            }
+          });
+        } else {
+          return false;
+        }
+      });
+
+      $(document).on('click', '#clear', function(){
+        if(confirm("Are you sure want to Clear Cart?"))
+        {
+          $.ajax({
+            url: "<?= base_url('admin/invoice/clear');?>",
+            success:function(data){
+              alert("Your cart has been clear...");
+              $('#cart_details').html(data);
+            }
+          });
+        } else {
+          return false;
+        }
+      });
+    });
   </script>
 </body>
 </html>

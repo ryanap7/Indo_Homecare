@@ -9,7 +9,7 @@
 			<div class="section-header">
 				<h1>Data Client</h1>
 				<div class="section-header-breadcrumb">
-					<div class="breadcrumb-item active"><a href="<?= base_url('administrasi/dashboard') ?>">Dashboard</a></div>
+					<div class="breadcrumb-item active"><a href="<?= base_url('admin/dashboard') ?>">Dashboard</a></div>
 					<div class="breadcrumb-item">Data Client</div>
 				</div>
 			</div>
