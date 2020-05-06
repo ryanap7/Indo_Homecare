@@ -46,9 +46,9 @@
 														</div>
 													</td>
 													<td>
-														<a href="<?php echo base_url('admin/invoice/preview/').$data->id ?>" class="btn btn-warning" title="Preview Invoice"><i class="fa fa-file"></i> </a>
-														<a href="<?php echo base_url('admin/invoice/download/').$data->id ?>" class="btn btn-danger" title="Print PDF"><i class="fa fa-print"></i> </a>
-														<a href="<?php echo base_url('admin/invoice/detail/').$data->id ?>" class="btn btn-info" title="Detail"><i class="fa fa-eye"></i> </a>
+														<a href="<?php echo base_url('admin/sewa_alkes/preview/').$data->id_sewa ?>" class="btn btn-warning" title="Preview Invoice"><i class="fa fa-file"></i> </a>
+														<a href="<?php echo base_url('admin/sewa_alkes/download/').$data->id_sewa ?>" class="btn btn-danger" title="Print PDF"><i class="fa fa-print"></i> </a>
+														<a href="<?php echo base_url('admin/sewa_alkes/detail/').$data->id_sewa ?>" class="btn btn-info" title="Detail"><i class="fa fa-eye"></i> </a>
 													</td>
 												</tr>
 											<?php endforeach;?>

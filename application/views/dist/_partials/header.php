@@ -2,8 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en"><head>
   	<meta charset="UTF-8">
  	<meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
   	<title><?php echo $title; ?></title>
@@ -76,5 +75,4 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		$this->load->view('dist/_partials/sidebar');
 	} ?>
 
-</head>
-<body>
+</head><body>

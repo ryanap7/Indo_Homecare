@@ -34,7 +34,7 @@
 										</thead>
 										<tbody>
 											<?php
-												foreach($transaction as $data) : ?>
+												foreach($sewa as $data) : ?>
 												<tr>
 													<td><?= $data->no_invoice?></td>
 													<td><?= $data->nama?></td>
@@ -42,13 +42,13 @@
 													<td><?= $data->phone?></td>
 													<td>
 														<div class="badges">
-															<span class="badge badge-success">Success</span>
+															<span class="badge badge-info">Pending</span>
 														</div>
 													</td>
 													<td>
-														<a href="<?php echo base_url('admin/invoice/preview/').$data->id ?>" class="btn btn-warning" title="Preview Invoice"><i class="fa fa-file"></i> </a>
-														<a href="<?php echo base_url('admin/invoice/download/').$data->id ?>" class="btn btn-danger" title="Print PDF"><i class="fa fa-print"></i> </a>
-														<a href="<?php echo base_url('admin/invoice/detail/').$data->id ?>" class="btn btn-info" title="Detail"><i class="fa fa-eye"></i> </a>
+														<a href="<?php echo base_url('admin/sewa_alkes/detail/').$data->id_sewa ?>" class="btn btn-info" title="Detail"><i class="fa fa-eye"></i> </a>
+														<a href="<?php echo base_url('admin/sewa_alkes/confirm/').$data->id_sewa ?>" class="btn btn-success" title="Konfirmasi"><i class="fa fa-check"></i> </a>
+														<a href="<?php echo base_url('admin/sewa_alkes/cancel/').$data->id_sewa ?>" class="btn btn-danger" title="Cancel"><i class="fa fa-times"></i> </a>
 													</td>
 												</tr>
 											<?php endforeach;?>

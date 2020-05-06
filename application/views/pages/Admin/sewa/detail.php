@@ -25,17 +25,19 @@
 												<th class="text-center">
 													#
 												</th>
-												<th>Jasa yang digunakan</th>
+												<th>Barang yang ingin Disewa</th>
+												<th>Quantity</th>
 												<th>Harga</th>
 											</tr>
 										</thead>
 										<tbody>
                                             <?php
                                                 $no =1;
-												foreach($invoice as $data) : ?>
+												foreach($detail as $data) : ?>
 												<tr>
 													<td><?= $no++?></td>
-													<td><?= $data->nama_layanan." - ". $data->periode?></td>
+													<td><?= $data->nama?></td>
+													<td><?= $data->qty?></td>
 													<td>Rp. <?= rupiah($data->harga);?></td>
 												</tr>
 											<?php endforeach;?>

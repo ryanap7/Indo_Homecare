@@ -33,17 +33,31 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="minggu">Harga mingguan</label>
-                                        <input id="minggu" type="text" class="form-control" name="minggu" tabindex="1" required>
-                                        <div class="invalid-feedback">
-                                            Please fill in price
+                                        <label for="minggu">Harga Minggu</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">
+                                                    Rp
+                                                </div>
+                                            </div>
+                                            <input id="minggu" type="text" name="minggu" tabindex="1" class="form-control currency" required>
+                                            <div class="invalid-feedback">
+                                                Please fill in price
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="bulan">Harga bulanan</label>
-                                        <input id="bulan" type="text" class="form-control" name="bulan" tabindex="1" required>
-                                        <div class="invalid-feedback">
-                                            Please fill in price
+                                        <label for="bulan">Harga Bulanan</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">
+                                                    Rp
+                                                </div>
+                                            </div>
+                                            <input id="bulan" type="text" name="bulan" tabindex="1" class="form-control currency" required>
+                                            <div class="invalid-feedback">
+                                                Please fill in price
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="form-group">

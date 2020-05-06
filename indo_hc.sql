@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 05 Bulan Mei 2020 pada 10.21
+-- Waktu pembuatan: 06 Bulan Mei 2020 pada 18.50
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.4.1
 
@@ -31,7 +31,6 @@ SET time_zone = "+00:00";
 CREATE TABLE `alkes` (
   `id_alkes` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
-  `stok` int(11) NOT NULL,
   `minggu` varchar(20) NOT NULL,
   `bulan` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -40,8 +39,9 @@ CREATE TABLE `alkes` (
 -- Dumping data untuk tabel `alkes`
 --
 
-INSERT INTO `alkes` (`id_alkes`, `name`, `stok`, `minggu`, `bulan`) VALUES
-(1, 'A', 6, 'Rp. 10.000', 'Rp. 30.000');
+INSERT INTO `alkes` (`id_alkes`, `name`, `minggu`, `bulan`) VALUES
+(3, 'A', '100', '900000'),
+(4, 'B', '200', '20000');
 
 -- --------------------------------------------------------
 
@@ -131,6 +131,28 @@ INSERT INTO `client` (`id_client`, `nama`, `nik`, `email`, `phone`, `alamat`, `s
 (2, 'Test', '098974897473', 'test@gmail.com', '0989879', 'Majalengka', '1'),
 (3, 'Ryan', '3210171604980021', 'satu@gmail.com', '089639626048', 'Majalengka', '1'),
 (4, 'dua', '2352827328', 'dua@gmail.com', '8273562345273', 'hsgsdlhdsgsukeb dhsfbffisyuesd', '1');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `detail_sewa`
+--
+
+CREATE TABLE `detail_sewa` (
+  `id_detail` int(11) NOT NULL,
+  `id_sewa` int(11) NOT NULL,
+  `nama` varchar(100) NOT NULL,
+  `qty` int(11) NOT NULL,
+  `harga` int(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `detail_sewa`
+--
+
+INSERT INTO `detail_sewa` (`id_detail`, `id_sewa`, `nama`, `qty`, `harga`) VALUES
+(3, 3, 'A', 2, 900000),
+(4, 3, 'B', 4, 20000);
 
 -- --------------------------------------------------------
 
@@ -321,6 +343,28 @@ INSERT INTO `profesi` (`id_profesi`, `nama_bagian`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `sewa_alkes`
+--
+
+CREATE TABLE `sewa_alkes` (
+  `id_sewa` int(11) NOT NULL,
+  `id_client` int(11) NOT NULL,
+  `no_invoice` varchar(20) NOT NULL,
+  `status` char(1) NOT NULL,
+  `date` date NOT NULL,
+  `date_expired` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `sewa_alkes`
+--
+
+INSERT INTO `sewa_alkes` (`id_sewa`, `id_client`, `no_invoice`, `status`, `date`, `date_expired`) VALUES
+(3, 3, 'NMK/20.0506001', '2', '2020-05-06', '2020-06-05');
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `sewa_ambulance`
 --
 
@@ -403,6 +447,13 @@ ALTER TABLE `client`
   ADD PRIMARY KEY (`id_client`);
 
 --
+-- Indeks untuk tabel `detail_sewa`
+--
+ALTER TABLE `detail_sewa`
+  ADD PRIMARY KEY (`id_detail`),
+  ADD KEY `id_sewa` (`id_sewa`);
+
+--
 -- Indeks untuk tabel `employees`
 --
 ALTER TABLE `employees`
@@ -448,6 +499,13 @@ ALTER TABLE `profesi`
   ADD PRIMARY KEY (`id_profesi`);
 
 --
+-- Indeks untuk tabel `sewa_alkes`
+--
+ALTER TABLE `sewa_alkes`
+  ADD PRIMARY KEY (`id_sewa`),
+  ADD KEY `id_client` (`id_client`);
+
+--
 -- Indeks untuk tabel `sewa_ambulance`
 --
 ALTER TABLE `sewa_ambulance`
@@ -469,7 +527,7 @@ ALTER TABLE `transaction`
 -- AUTO_INCREMENT untuk tabel `alkes`
 --
 ALTER TABLE `alkes`
-  MODIFY `id_alkes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_alkes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT untuk tabel `ambulance`
@@ -494,6 +552,12 @@ ALTER TABLE `category`
 --
 ALTER TABLE `client`
   MODIFY `id_client` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT untuk tabel `detail_sewa`
+--
+ALTER TABLE `detail_sewa`
+  MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT untuk tabel `employees`
@@ -538,6 +602,12 @@ ALTER TABLE `profesi`
   MODIFY `id_profesi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
+-- AUTO_INCREMENT untuk tabel `sewa_alkes`
+--
+ALTER TABLE `sewa_alkes`
+  MODIFY `id_sewa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT untuk tabel `sewa_ambulance`
 --
 ALTER TABLE `sewa_ambulance`
@@ -560,6 +630,12 @@ ALTER TABLE `auth`
   ADD CONSTRAINT `auth_ibfk_1` FOREIGN KEY (`role`) REFERENCES `hak_akses` (`id_role`);
 
 --
+-- Ketidakleluasaan untuk tabel `detail_sewa`
+--
+ALTER TABLE `detail_sewa`
+  ADD CONSTRAINT `detail_sewa_ibfk_1` FOREIGN KEY (`id_sewa`) REFERENCES `sewa_alkes` (`id_sewa`);
+
+--
 -- Ketidakleluasaan untuk tabel `employees`
 --
 ALTER TABLE `employees`
@@ -576,6 +652,12 @@ ALTER TABLE `invoice`
 --
 ALTER TABLE `jasa_medis`
   ADD CONSTRAINT `jasa_medis_ibfk_2` FOREIGN KEY (`id_category`) REFERENCES `category` (`id_category`);
+
+--
+-- Ketidakleluasaan untuk tabel `sewa_alkes`
+--
+ALTER TABLE `sewa_alkes`
+  ADD CONSTRAINT `sewa_alkes_ibfk_1` FOREIGN KEY (`id_client`) REFERENCES `client` (`id_client`);
 
 --
 -- Ketidakleluasaan untuk tabel `sewa_ambulance`

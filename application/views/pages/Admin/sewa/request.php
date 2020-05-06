@@ -1,0 +1,118 @@
+<?php
+    defined('BASEPATH') OR exit('No direct script access allowed');
+    $data['admin'] = $this->db->get_where('auth', ['id_auth' => $this->session->userdata('id')])->row_array();
+	$this->load->view('dist/_partials/header', $data);
+?>
+    <!-- Main Content -->
+    <div class="main-content">
+        <section class="section">
+            <div class="section-header">
+                <h1>Permintaan Transaksi</h1>
+            </div>
+            <div class="section-body">
+                <div class="row">
+                    <div class="col-12 col-md-6 col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>Pilih Peralatan Kesehatan</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="tab-content" id="myTabContent2">
+                                    <div class="tab-pane fade show active" id="home3" role="tabpanel" aria-labelledby="home-tab3">
+                                        <div class="row">
+                                            <?php
+                                            foreach($alkes as $data)
+                                            {
+                                                echo '
+                                                <div class="col-12 col-md-6 col-lg-3">
+                                                    <div class="card card-dark">
+                                                        <div class="card-header">
+                                                            <h4 style="font-size: 16px">'.$data->name.'</h4>
+                                                        </div>
+                                                        <div class="card-body">
+                                                            <div class="form-group">
+                                                                <label for="qty">QTY :</label>
+                                                                <input id="'.$data->id_alkes.'" type="text" class="form-control" name="qty" tabindex="1" required autofocus>
+                                                                <div class="invalid-feedback">
+                                                                    Please enter Quantity
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="card-footer text-center" style="margin-top: -30px">
+                                                            <button type="button" name="add" class="btn btn-primary addd" 
+                                                            data-name="'.$data->name.'"
+                                                            data-price="'.$data->minggu.'"
+                                                            data-sesi="Minggu"
+                                                            data-id="'.$data->id_alkes.'">Mingguan</button>
+                                                            
+                                                            <button type="button" name="add" class="btn btn-primary add" 
+                                                            data-name="'.$data->name.'"
+                                                            data-price="'.$data->bulan.'"
+                                                            data-sesi="Bulan"
+                                                            data-id="'.$data->id_alkes.'">Bulanan</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                ';
+                                            }
+                                            ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body" id="cart_details">
+                                
+                            </div>
+                        </div>
+					</div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <div class="modal fade" id="choose_client" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Personal Information</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="<?php echo base_url('admin/sewa_alkes/store') ?>" method="post">
+                    <div class="form-group">
+                        <label for="invoice">No. Invoice</label>
+                        <input id="invoice" type="text" class="form-control" value="<?= $newCode ?>" name="invoice" tabindex="1" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>Pilih Data Pasien</label>
+                        <select class="form-control selectric" id="name" name="name" required>
+                            <option value="" selected disabled>-- Choose Your Client --</option>
+                            <?php
+                            foreach($client as $data) : ?>
+                            <option value="<?= $data->id_client?>"><?= $data->nama?></option>
+                            <?php endforeach; ?>
+                        </select>
+                        <br>
+                        <small>Note :</small>
+                        <small>Lengkapi data pasien terlebih dahulu di menu Data Client</small>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="close" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-info">Checkout</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<?php $this->load->view('dist/_partials/footer'); ?>

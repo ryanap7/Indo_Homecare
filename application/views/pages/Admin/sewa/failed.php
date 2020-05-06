@@ -7,10 +7,10 @@
 	<div class="main-content">
 		<section class="section">
 			<div class="section-header">
-				<h1>Detail</h1>
+				<h1>Data Transaksi</h1>
 				<div class="section-header-breadcrumb">
 					<div class="breadcrumb-item active"><a href="<?= base_url('admin/dashboard') ?>">Dashboard</a></div>
-					<div class="breadcrumb-item">Detail</div>
+					<div class="breadcrumb-item">Data Transaksi</div>
 				</div>
 			</div>
 			<div class="section-body">
@@ -19,24 +19,35 @@
 						<div class="card">
 							<div class="card-body">
 								<div class="table-responsive">
-									<table class="table table-striped" id="detail">
+									<table class="table table-striped" id="example">
 										<thead>
 											<tr>
 												<th class="text-center">
-													#
+													No Invoice
 												</th>
-												<th>Jasa yang digunakan</th>
-												<th>Harga</th>
+												<th>Nama Pasien</th>
+												<th>Alamat</th>
+												<th>No Telepon</th>
+												<th>Status</th>
+												<th>Action</th>
 											</tr>
 										</thead>
 										<tbody>
-                                            <?php
-                                                $no =1;
-												foreach($invoice as $data) : ?>
+											<?php
+												foreach($sewa as $data) : ?>
 												<tr>
-													<td><?= $no++?></td>
-													<td><?= $data->nama_layanan." - ". $data->periode?></td>
-													<td>Rp. <?= rupiah($data->harga);?></td>
+													<td><?= $data->no_invoice?></td>
+													<td><?= $data->nama?></td>
+													<td><?= $data->alamat?></td>
+													<td><?= $data->phone?></td>
+													<td>
+														<div class="badges">
+															<span class="badge badge-danger">Cancel</span>
+														</div>
+													</td>
+													<td>
+														<a href="<?php echo base_url('admin/sewa_alkes/detail/').$data->id_sewa ?>" class="btn btn-info" title="Detail"><i class="fa fa-eye"></i> </a>
+													</td>
 												</tr>
 											<?php endforeach;?>
 										</tbody>

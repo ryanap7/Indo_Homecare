@@ -87,13 +87,13 @@
 						<li><a class="nav-link" href="<?= base_url('admin/ambulance/sewa/history') ?>">History</a></li>
 					</ul>
 				</li>
-				<li class="dropdown <?= $this->uri->segment(2) == 'alkes'  ? 'active' : ''; ?>">
+				<li class="dropdown <?= $this->uri->segment(2) == 'sewa_alkes'  ? 'active' : ''; ?>">
 					<a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fa fa-exchange-alt"></i> <span>Peralatan Kesehatan</span></a>
 					<ul class="dropdown-menu">
-						<li><a class="nav-link" href="<?= base_url('admin/invoice/request') ?>">Permintaan Transaksi</a></li>
-						<li><a class="nav-link" href="<?= base_url('admin/invoice/failed') ?>">Transaksi Gagal</a></li>
-						<li><a class="nav-link" href="<?= base_url('admin/invoice') ?>">Transaksi Pending</a></li>
-						<li><a class="nav-link" href="<?= base_url('admin/invoice/success') ?>">Transaksi Sukses</a></li>
+						<li><a class="nav-link" href="<?= base_url('admin/sewa_alkes/request') ?>">Permintaan Transaksi</a></li>
+						<li><a class="nav-link" href="<?= base_url('admin/sewa_alkes/failed') ?>">Transaksi Gagal</a></li>
+						<li><a class="nav-link" href="<?= base_url('admin/sewa_alkes') ?>">Transaksi Pending</a></li>
+						<li><a class="nav-link" href="<?= base_url('admin/sewa_alkes/success') ?>">Transaksi Sukses</a></li>
 					</ul>
 				</li>
 				<li class="dropdown <?= $this->uri->segment(2) == 'invoice'  ? 'active' : ''; ?>">

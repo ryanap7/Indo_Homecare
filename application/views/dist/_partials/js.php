@@ -185,5 +185,99 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       });
     });
   </script>
-</body>
-</html>
+
+  <script>
+    $(document).ready(function(){
+      $('.add').click(function(){
+        var id      = $(this).data("id");
+        var name    = $(this).data("name");
+        var price   = $(this).data("price");
+        var sesi    = $(this).data("sesi");
+        var qty     = $('#' + id).val();
+
+        console.log(qty);
+
+        if (qty != '' && qty > 0) {
+          $.ajax({
+            url: "<?= base_url('admin/sewa_alkes/add_cart');?>",
+            method: "POST",
+            data: {id:id, name:name, price:price, qty:qty, sesi:sesi},
+
+            success:function(data){
+              alert("Success Added to Cart");
+              $('#cart_details').html(data);
+            }
+          });
+        } else {
+          alert("Please Enter Quantity")
+        }
+
+      });
+
+      $('#cart_details').load("<?= base_url('admin/sewa_alkes/load');?>");
+
+      $(document).on('click', '.removed', function(){
+        var row_id = $(this).attr("id");
+        if(confirm("Are you sure want to Cancel?"))
+        {
+          $.ajax({
+            url: "<?= base_url('admin/sewa_alkes/remove');?>",
+            method: "POST",
+            data: {row_id: row_id},
+            success:function(data){
+              alert("Success Remove from Cart");
+              $('#cart_details').html(data);
+            }
+          });
+        } else {
+          return false;
+        }
+      });
+
+      $(document).on('click', '#clear_data', function(){
+        if(confirm("Are you sure want to Clear Cart?"))
+        {
+          $.ajax({
+            url: "<?= base_url('admin/sewa_alkes/clear');?>",
+            success:function(data){
+              alert("Your cart has been clear...");
+              $('#cart_details').html(data);
+            }
+          });
+        } else {
+          return false;
+        }
+      });
+    });
+  </script>
+
+  <script>
+    $(document).ready(function(){
+      $('.addd').click(function(){
+        var id      = $(this).data("id");
+        var name    = $(this).data("name");
+        var price   = $(this).data("price");
+        var sesi    = $(this).data("sesi");
+        var qty     = $('#' + id).val();
+
+        if (qty != '' && qty > 0) {
+          $.ajax({
+            url: "<?= base_url('admin/sewa_alkes/add_cart');?>",
+            method: "POST",
+            data: {id:id, name:name, price:price, qty:qty, sesi:sesi},
+
+            success:function(data){
+              alert("Success Added to Cart");
+              $('#cart_details').html(data);
+            }
+          });
+        } else {
+          alert("Please Enter Quantity")
+        }
+
+      });
+
+      $('#cart_details').load("<?= base_url('admin/sewa_alkes/load');?>");
+    });
+  </script>
+</body></html>

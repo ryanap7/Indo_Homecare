@@ -133,6 +133,22 @@ $route['admin/invoice/success']    						= 'Admin/InvoiceController/success';
 $route['admin/invoice/download/(:any)']			        = 'Admin/InvoiceController/download/$1';
 $route['admin/invoice/preview/(:any)']			        = 'Admin/InvoiceController/preview/$1';
 
+$route['admin/sewa_alkes']   					        = 'Admin/SewaAlkesController';
+$route['admin/sewa_alkes/store']				        = 'Admin/SewaAlkesController/store';
+$route['admin/sewa_alkes/request'] 						= 'Admin/SewaAlkesController/request';
+$route['admin/sewa_alkes/add_cart'] 					= 'Admin/SewaAlkesController/add_cart';
+$route['admin/sewa_alkes/view']     					= 'Admin/SewaAlkesController/view';
+$route['admin/sewa_alkes/load']    						= 'Admin/SewaAlkesController/load';
+$route['admin/sewa_alkes/remove']    					= 'Admin/SewaAlkesController/remove';
+$route['admin/sewa_alkes/clear']    					= 'Admin/SewaAlkesController/clear';
+$route['admin/sewa_alkes/detail/(:any)']			    = 'Admin/SewaAlkesController/detail/$1';
+$route['admin/sewa_alkes/failed']    					= 'Admin/SewaAlkesController/failed';
+$route['admin/sewa_alkes/confirm/(:any)']			    = 'Admin/SewaAlkesController/confirm/$1';
+$route['admin/sewa_alkes/cancel/(:any)']			    = 'Admin/SewaAlkesController/cancel/$1';
+$route['admin/sewa_alkes/success']    					= 'Admin/SewaAlkesController/success';
+$route['admin/sewa_alkes/download/(:any)']			    = 'Admin/SewaAlkesController/download/$1';
+$route['admin/sewa_alkes/preview/(:any)']			    = 'Admin/SewaAlkesController/preview/$1';
+
 
 // ------------------------------------------------------------------------
 // Koordinator
