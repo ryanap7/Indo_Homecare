@@ -49,13 +49,11 @@ class AlkesController extends CI_Controller
 	public function store()
     {
 		$name              		= $this->input->post('name');
-		$stok              		= $this->input->post('stok');
 		$minggu 	            = $this->input->post('minggu');
 		$bulan 	            	= $this->input->post('bulan');
 		
 		$data= array(
 			'name'			=> $name,
-			'stok'			=> $stok,
 			'minggu'		=> $minggu,
 			'bulan'			=> $bulan
 		);
@@ -87,13 +85,11 @@ class AlkesController extends CI_Controller
     {
 		$id						= $this->input->post('id');
 		$name              		= $this->input->post('name');
-		$stok              		= $this->input->post('stok');
 		$minggu 	            = $this->input->post('minggu');
 		$bulan 	            	= $this->input->post('bulan');
 		
 		$data= array(
 			'name'			=> $name,
-			'stok'			=> $stok,
 			'minggu'		=> $minggu,
 			'bulan'			=> $bulan
 		);

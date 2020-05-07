@@ -149,6 +149,12 @@ $route['admin/sewa_alkes/success']    					= 'Admin/SewaAlkesController/success'
 $route['admin/sewa_alkes/download/(:any)']			    = 'Admin/SewaAlkesController/download/$1';
 $route['admin/sewa_alkes/preview/(:any)']			    = 'Admin/SewaAlkesController/preview/$1';
 
+$route['admin/pengeluaran']      					    = 'Admin/PengeluaranController';
+$route['admin/pengeluaran/create']		        	    = 'Admin/PengeluaranController/create';
+$route['admin/pengeluaran/store'] 		        	    = 'Admin/PengeluaranController/store';
+$route['admin/pengeluaran/edit/(:any)']		            = 'Admin/PengeluaranController/edit/$1';
+$route['admin/pengeluaran/update']			            = 'Admin/PengeluaranController/update';
+$route['admin/pengeluaran/delete/(:any)']	            = 'Admin/PengeluaranController/delete/$1';
 
 // ------------------------------------------------------------------------
 // Koordinator

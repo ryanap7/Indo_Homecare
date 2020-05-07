@@ -26,13 +26,6 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="stok">Stok</label>
-                                        <input id="stok" type="number" class="form-control" name="stok" tabindex="1" required autofocus>
-                                        <div class="invalid-feedback">
-                                            Please fill in your stock
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
                                         <label for="minggu">Harga Minggu</label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">

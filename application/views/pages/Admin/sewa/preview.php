@@ -86,15 +86,17 @@
                                             <?php
                                                 $no =1;
                                                 $subtotal = 0;
-												foreach($invoice as $data) : ?>
+                                                foreach($invoice as $data) : 
+                                                $jumlah = $data->qty * $data->harga;
+                                                ?>
                                             <tr>
                                                 <td width="60%"><?= $data->nama?></td>
                                                 <td class="text-center"><?= $data->qty?></td>
                                                 <td class="text-right">Rp. <?= rupiah($data->harga);?></td>
-                                                <td class="text-right">Rp. <?= rupiah($data->harga);?></td>
+                                                <td class="text-right">Rp. <?= rupiah($jumlah);?></td>
                                             </tr>
                                             <?php
-                                            $subtotal += $data->harga;
+                                            $subtotal += $jumlah;
                                             endforeach;?>
                                         </tbody>
                                     </table>

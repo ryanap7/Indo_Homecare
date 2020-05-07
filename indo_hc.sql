@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 06 Bulan Mei 2020 pada 18.50
+-- Waktu pembuatan: 07 Bulan Mei 2020 pada 22.07
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.4.1
 
@@ -283,6 +283,27 @@ INSERT INTO `paket` (`id_paket`, `name`, `desc`, `harga`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `pengeluaran`
+--
+
+CREATE TABLE `pengeluaran` (
+  `id_pengeluaran` int(11) NOT NULL,
+  `desc` text NOT NULL,
+  `nominal` int(20) NOT NULL,
+  `date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `pengeluaran`
+--
+
+INSERT INTO `pengeluaran` (`id_pengeluaran`, `desc`, `nominal`, `date`) VALUES
+(1, 'Uang Makan', 20000, '2020-05-13'),
+(2, 'Uang Jajan', 200000, '2020-05-09');
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `penunjang_medis`
 --
 
@@ -487,6 +508,12 @@ ALTER TABLE `paket`
   ADD PRIMARY KEY (`id_paket`);
 
 --
+-- Indeks untuk tabel `pengeluaran`
+--
+ALTER TABLE `pengeluaran`
+  ADD PRIMARY KEY (`id_pengeluaran`);
+
+--
 -- Indeks untuk tabel `penunjang_medis`
 --
 ALTER TABLE `penunjang_medis`
@@ -588,6 +615,12 @@ ALTER TABLE `jasa_medis`
 --
 ALTER TABLE `paket`
   MODIFY `id_paket` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT untuk tabel `pengeluaran`
+--
+ALTER TABLE `pengeluaran`
+  MODIFY `id_pengeluaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `penunjang_medis`

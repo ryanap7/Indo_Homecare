@@ -105,6 +105,12 @@
 						<li><a class="nav-link" href="<?= base_url('admin/invoice/success') ?>">Transaksi Sukses</a></li>
 					</ul>
 				</li>
+				<li class="<?= $this->uri->segment(2) == 'pengeluaran'  ? 'active' : ''; ?>">
+					<a class="nav-link" href="<?= base_url('admin/pengeluaran') ?>">
+						<i class="fas fa-dollar-sign"></i> 
+						<span>Transaksi Pengeluaran</span>
+					</a>
+				</li>
 				<li class="menu-header">Laporan</li>
 				<li class="<?= $this->uri->segment(2) == 'report'  ? 'active' : ''; ?>">
 					<a class="nav-link" href="<?= base_url('admin/report') ?>">

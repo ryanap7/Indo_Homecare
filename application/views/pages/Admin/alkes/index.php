@@ -27,7 +27,6 @@
 													#
 												</th>
 												<th>Nama Barang</th>
-												<th>Stok</th>
 												<th>Harga mingguan</th>
 												<th>Harga Bulanan</th>
 												<th>Action</th>
@@ -40,9 +39,8 @@
 												<tr>
 													<td><?= $no++?></td>
 													<td><?= $data->name?></td>
-													<td><?= $data->stok?></td>
-													<td><?= $data->minggu?></td>
-													<td><?= $data->bulan?></td>
+													<td>Rp. <?= rupiah($data->minggu)?></td>
+													<td>Rp. <?= rupiah($data->bulan)?></td>
 													<td>
 														<a href="<?php echo base_url('admin/service/alkes/edit/').$data->id_alkes ?>" class="btn btn-success" title="Edit"><i class="fa fa-edit"></i> </a>
 														<a href="<?php echo base_url('admin/service/alkes/delete/').$data->id_alkes ?>" class="btn btn-danger" onclick="javascript: return confirm('Are you sure want to Delete ?')" title="Delete"><i class="fa fa-trash"></i></a>

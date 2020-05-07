@@ -35,7 +35,9 @@
 										<tbody>
 											<?php
 												$no = 1;
-												foreach($admin as $data) : ?>
+												foreach($admin as $data) : 
+												$originalDate = $data->date;
+												$newDate = date("d M Y", strtotime($originalDate));?>
 												<tr>
 													<td><?= $no++?></td>
 													<td><?= $data->name?></td>
@@ -51,7 +53,7 @@
 														</div>
 													<?php } ?>	
 													</td>
-													<td><?= $data->date?></td>
+													<td><?= $newDate?></td>
 													<td>
 														<?php if ($data->status_peminjaman === '0') { ?>
 															<a href="<?php echo base_url('admin/ambulance/sewa/update/').$data->id_ambulance ?>" class="btn btn-info" onclick="javascript: return confirm('Are you sure want to Confirm ?')" title="Konfirmasi"><i class="fa fa-check"></i></a>
