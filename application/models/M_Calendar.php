@@ -9,4 +9,11 @@ class M_Calendar extends CI_Model {
 		$query = $this->db->get();
 		return $query;
 	}
+
+	public function ambulance()
+	{
+        $this->db->from('sewa_ambulance');
+		$query = $this->db->get();
+		return $query;
+	}
 }

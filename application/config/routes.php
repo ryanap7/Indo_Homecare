@@ -61,14 +61,43 @@ $route['superadmin/dashboard']				            = 'SuperAdmin/DashboardController'
 $route['superadmin/admin']						        = 'SuperAdmin/AdminController';
 $route['superadmin/admin/create']				        = 'SuperAdmin/AdminController/create';
 $route['superadmin/admin/store']				        = 'SuperAdmin/AdminController/store';
-$route['superadmin/admin/edit/(:any)']			        =  'SuperAdmin/AdminController/edit/$1';
+$route['superadmin/admin/edit/(:any)']			        = 'SuperAdmin/AdminController/edit/$1';
 $route['superadmin/admin/update']				        = 'SuperAdmin/AdminController/update';
 $route['superadmin/admin/delete/(:any)']		        = 'SuperAdmin/AdminController/delete/$1';
 
+$route['superadmin/client']      					    = 'SuperAdmin/ClientController';
+$route['superadmin/service']						    = 'SuperAdmin/ServiceController';
+$route['superadmin/service/support']				    = 'SuperAdmin/SupportController';
+$route['superadmin/service/package']				    = 'SuperAdmin/PackageController';
+$route['superadmin/service/alkes']						= 'SuperAdmin/AlkesController';
+
+$route['superadmin/laporan/pengeluaran']           		= 'SuperAdmin/ReportController/pengeluaran';
+$route['superadmin/report/ambulance']           	    = 'SuperAdmin/ReportController/ambulance';
+$route['superadmin/report/alkes']           			= 'SuperAdmin/ReportController/alkes';
+$route['superadmin/report/service']           	        = 'SuperAdmin/ReportController/service';
+$route['superadmin/report/filter']           			= 'SuperAdmin/ReportController/filter';
+$route['superadmin/report/filter1']           			= 'SuperAdmin/ReportController/filter1';
+$route['superadmin/report/filter2']           			= 'SuperAdmin/ReportController/filter2';
+$route['superadmin/report/filter3']           		    = 'SuperAdmin/ReportController/filter3';
+$route['superadmin/report/print_pengeluaran']          	= 'SuperAdmin/ReportController/print_pengeluaran';
+$route['superadmin/report/print_ambulance']          	= 'SuperAdmin/ReportController/print_ambulance';
+$route['superadmin/report/print_alkes']               	= 'SuperAdmin/ReportController/print_alkes';
+$route['superadmin/report/print_layanan']              	= 'SuperAdmin/ReportController/print_layanan';
+
+$route['superadmin/calendar/ambulance']           		= 'SuperAdmin/CalendarController/ambulance';
+$route['superadmin/calendar/service']               	= 'SuperAdmin/CalendarController/service';
+$route['superadmin/calendar/alkes']           			= 'SuperAdmin/CalendarController/alkes';
+$route['superadmin/calendar/load_ambulance']           	= 'SuperAdmin/CalendarController/load_ambulance';
+$route['superadmin/calendar/load_service']              = 'SuperAdmin/CalendarController/load_service';
+$route['superadmin/calendar/load_alkes']           		= 'SuperAdmin/CalendarController/load_alkes';
+
 // ------------------------------------------------------------------------
-// Admini
+// Admin
 // ------------------------------------------------------------------------
 $route['admin/dashboard']	        			        = 'Admin/DashboardController';
+$route['admin/dashboard/service']                       = 'Admin/DashboardController/service';
+$route['admin/dashboard/alkes']                         = 'Admin/DashboardController/alkes';
+$route['admin/dashboard/ambulance']                     = 'Admin/DashboardController/ambulance';
 
 $route['admin/client']      					        = 'Admin/ClientController';
 $route['admin/client/create']		        	        = 'Admin/ClientController/create';
@@ -155,6 +184,26 @@ $route['admin/pengeluaran/store'] 		        	    = 'Admin/PengeluaranController/
 $route['admin/pengeluaran/edit/(:any)']		            = 'Admin/PengeluaranController/edit/$1';
 $route['admin/pengeluaran/update']			            = 'Admin/PengeluaranController/update';
 $route['admin/pengeluaran/delete/(:any)']	            = 'Admin/PengeluaranController/delete/$1';
+
+$route['admin/laporan/pengeluaran']           			= 'Admin/ReportController/pengeluaran';
+$route['admin/report/ambulance']           			    = 'Admin/ReportController/ambulance';
+$route['admin/report/alkes']           					= 'Admin/ReportController/alkes';
+$route['admin/report/service']           			    = 'Admin/ReportController/service';
+$route['admin/report/filter']           			    = 'Admin/ReportController/filter';
+$route['admin/report/filter1']           			    = 'Admin/ReportController/filter1';
+$route['admin/report/filter2']           			    = 'Admin/ReportController/filter2';
+$route['admin/report/filter3']           			    = 'Admin/ReportController/filter3';
+$route['admin/report/print_pengeluaran']          	    = 'Admin/ReportController/print_pengeluaran';
+$route['admin/report/print_ambulance']          	    = 'Admin/ReportController/print_ambulance';
+$route['admin/report/print_alkes']               	    = 'Admin/ReportController/print_alkes';
+$route['admin/report/print_layanan']              	    = 'Admin/ReportController/print_layanan';
+
+$route['admin/calendar/ambulance']           			= 'Admin/CalendarController/ambulance';
+$route['admin/calendar/service']               			= 'Admin/CalendarController/service';
+$route['admin/calendar/alkes']           				= 'Admin/CalendarController/alkes';
+$route['admin/calendar/load_ambulance']           		= 'Admin/CalendarController/load_ambulance';
+$route['admin/calendar/load_service']               	= 'Admin/CalendarController/load_service';
+$route['admin/calendar/load_alkes']           			= 'Admin/CalendarController/load_alkes';
 
 // ------------------------------------------------------------------------
 // Koordinator

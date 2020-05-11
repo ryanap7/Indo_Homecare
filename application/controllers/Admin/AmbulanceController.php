@@ -20,12 +20,7 @@ class AmbulanceController extends CI_Controller
 			$data['admin']	 	= $this->db->query("SELECT * FROM ambulance")->result();
 			$this->load->view('pages/Admin/ambulance/index.php', $data);
 		} else {
-			echo "
-				<script>
-					alert('Access Denied');
-					history.go(-1);
-				</script>
-			";	
+			redirect('/');	
 		}
 	}
 
@@ -37,12 +32,7 @@ class AmbulanceController extends CI_Controller
 			);
 			$this->load->view('pages/Admin/ambulance/add', $data);
 		} else {
-			echo "
-				<script>
-					alert('Access Denied');
-					history.go(-1);
-				</script>
-			";	
+			redirect('/');	
 		}
 	}
 
@@ -69,12 +59,7 @@ class AmbulanceController extends CI_Controller
 			$data['admin'] = $this->db->query("SELECT * FROM ambulance WHERE id_ambulance='$id'")->result();
 			$this->load->view('pages/Admin/ambulance/edit', $data);
 		} else {
-			echo "
-				<script>
-					alert('Access Denied');
-					history.go(-1);
-				</script>
-			";	
+			redirect('/');	
 		}
 	}
 

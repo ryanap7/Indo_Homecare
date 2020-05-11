@@ -20,12 +20,7 @@ class ClientController extends CI_Controller
 			$data['admin']	 	= $this->db->query("SELECT * FROM client")->result();
 			$this->load->view('pages/Admin/client/index.php', $data);
 		} else {
-			echo "
-				<script>
-					alert('Access Denied');
-					history.go(-1);
-				</script>
-			";	
+			redirect('/');	
 		}
 	}
 
@@ -37,12 +32,7 @@ class ClientController extends CI_Controller
 			);
 			$this->load->view('pages/Admin/client/add', $data);
 		} else {
-			echo "
-				<script>
-					alert('Access Denied');
-					history.go(-1);
-				</script>
-			";	
+			redirect('/');	
 		}
 	}
 
@@ -84,12 +74,7 @@ class ClientController extends CI_Controller
 			$data['admin'] = $this->db->query("SELECT * FROM client WHERE id_client='$id'")->result();
 			$this->load->view('pages/Admin/client/edit', $data);
 		} else {
-			echo "
-				<script>
-					alert('Access Denied');
-					history.go(-1);
-				</script>
-			";	
+			redirect('/');	
 		}
 	}
 

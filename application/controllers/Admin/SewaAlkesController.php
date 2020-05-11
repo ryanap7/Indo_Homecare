@@ -20,12 +20,7 @@ class SewaAlkesController extends CI_Controller
 			$data['sewa']	 	= $this->db->query("SELECT * FROM sewa_alkes INNER JOIN client ON sewa_alkes.id_client=client.id_client WHERE sewa_alkes.status = 1")->result();
 			$this->load->view('pages/Admin/sewa/index.php', $data);
 		} else {
-			echo "
-				<script>
-					alert('Access Denied');
-					history.go(-1);
-				</script>
-			";	
+			redirect('/');	
 		}
 	}
 
@@ -67,12 +62,7 @@ class SewaAlkesController extends CI_Controller
 			$data['client']				 	= $this->db->query("SELECT * FROM client")->result();
 			$this->load->view('pages/Admin/sewa/request.php', $data);
 		} else {
-			echo "
-				<script>
-					alert('Access Denied');
-					history.go(-1);
-				</script>
-			";	
+			redirect('/');		
 		}
 	}
 
@@ -168,12 +158,7 @@ class SewaAlkesController extends CI_Controller
 			$data['detail']		 		= $this->M_Sewa->get_id_detail($id);
 			$this->load->view('pages/Admin/sewa/detail.php', $data);
 		} else {
-			echo "
-				<script>
-					alert('Access Denied');
-					history.go(-1);
-				</script>
-			";	
+			redirect('/');		
 		}
 	}
 
@@ -206,12 +191,7 @@ class SewaAlkesController extends CI_Controller
 			$data['sewa']	 	= $this->db->query("SELECT * FROM sewa_alkes INNER JOIN client ON sewa_alkes.id_client=client.id_client WHERE sewa_alkes.status = 0")->result();
 			$this->load->view('pages/Admin/sewa/failed.php', $data);
 		} else {
-			echo "
-				<script>
-					alert('Access Denied');
-					history.go(-1);
-				</script>
-			";	
+			redirect('/');		
 		}
 	}
 
@@ -249,12 +229,7 @@ class SewaAlkesController extends CI_Controller
 			$data['transaction']	 	= $this->db->query("SELECT * FROM sewa_alkes INNER JOIN client ON sewa_alkes.id_client=client.id_client WHERE sewa_alkes.status = 2")->result();
 			$this->load->view('pages/Admin/sewa/success.php', $data);
 		} else {
-			echo "
-				<script>
-					alert('Access Denied');
-					history.go(-1);
-				</script>
-			";	
+			redirect('/');		
 		}
 	}
 

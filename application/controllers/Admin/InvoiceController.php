@@ -20,12 +20,7 @@ class InvoiceController extends CI_Controller
 			$data['transaction']	 	= $this->db->query("SELECT * FROM transaction INNER JOIN client ON transaction.id_client=client.id_client WHERE transaction.status = 1")->result();
 			$this->load->view('pages/Admin/transaksi/index.php', $data);
 		} else {
-			echo "
-				<script>
-					alert('Access Denied');
-					history.go(-1);
-				</script>
-			";	
+			redirect('/');	
 		}
 	}
 
@@ -70,12 +65,7 @@ class InvoiceController extends CI_Controller
 			$data['client']				 	= $this->db->query("SELECT * FROM client")->result();
 			$this->load->view('pages/Admin/transaksi/request.php', $data);
 		} else {
-			echo "
-				<script>
-					alert('Access Denied');
-					history.go(-1);
-				</script>
-			";	
+			redirect('/');	
 		}
 	}
 
@@ -171,12 +161,7 @@ class InvoiceController extends CI_Controller
 			$data['invoice']		 	= $this->M_Invoice->get_id_invoice($id);
 			$this->load->view('pages/Admin/transaksi/detail.php', $data);
 		} else {
-			echo "
-				<script>
-					alert('Access Denied');
-					history.go(-1);
-				</script>
-			";	
+			redirect('/');	
 		}
 	}
 
@@ -191,12 +176,7 @@ class InvoiceController extends CI_Controller
 			$data['invoice']		 	= $this->M_Invoice->get_id_invoice($id);
 			$this->load->view('pages/Admin/transaksi/preview.php', $data);
 		} else {
-			echo "
-				<script>
-					alert('Access Denied');
-					history.go(-1);
-				</script>
-			";	
+			redirect('/');	
 		}
 	}
 
@@ -209,12 +189,7 @@ class InvoiceController extends CI_Controller
 			$data['transaction']	 	= $this->db->query("SELECT * FROM transaction INNER JOIN client ON transaction.id_client=client.id_client WHERE transaction.status = 0")->result();
 			$this->load->view('pages/Admin/transaksi/failed.php', $data);
 		} else {
-			echo "
-				<script>
-					alert('Access Denied');
-					history.go(-1);
-				</script>
-			";	
+			redirect('/');	
 		}
 	}
 
@@ -253,12 +228,7 @@ class InvoiceController extends CI_Controller
 			$data['transaction']	 	= $this->db->query("SELECT * FROM transaction INNER JOIN client ON transaction.id_client=client.id_client WHERE transaction.status = 2")->result();
 			$this->load->view('pages/Admin/transaksi/success.php', $data);
 		} else {
-			echo "
-				<script>
-					alert('Access Denied');
-					history.go(-1);
-				</script>
-			";	
+			redirect('/');	
 		}
 	}
 
@@ -409,6 +379,5 @@ class InvoiceController extends CI_Controller
 			$invioce = $row->no_invoice;
 		}
 		$pdf->Output('Invoice-'.$invioce.'.pdf', 'I');
-
 	}
 }

@@ -20,12 +20,7 @@ class SewaAmbulanceController extends CI_Controller
 			$data['admin']	 	= $this->db->query("SELECT * FROM ambulance")->result();
 			$this->load->view('pages/Admin/ambulance/sewa.php', $data);
 		} else {
-			echo "
-				<script>
-					alert('Access Denied');
-					history.go(-1);
-				</script>
-			";	
+			redirect('/');	
 		}
 	}
 
@@ -89,12 +84,7 @@ class SewaAmbulanceController extends CI_Controller
 			$data['admin']	 	= $this->db->query("SELECT * FROM sewa_ambulance INNER JOIN ambulance ON sewa_ambulance.id_ambulance = ambulance.id_ambulance")->result();
 			$this->load->view('pages/Admin/ambulance/history.php', $data);
 		} else {
-			echo "
-				<script>
-					alert('Access Denied');
-					history.go(-1);
-				</script>
-			";	
+			redirect('/');		
 		}
 	}
 }

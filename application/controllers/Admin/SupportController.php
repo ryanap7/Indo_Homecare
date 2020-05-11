@@ -20,12 +20,7 @@ class SupportController extends CI_Controller
 			$data['admin']	 	= $this->db->query("SELECT * FROM penunjang_medis")->result();
 			$this->load->view('pages/Admin/support/index.php', $data);
 		} else {
-			echo "
-				<script>
-					alert('Access Denied');
-					history.go(-1);
-				</script>
-			";	
+			redirect('/');	
 		}
 	}
 
@@ -37,12 +32,7 @@ class SupportController extends CI_Controller
 			);
 			$this->load->view('pages/Admin/support/add', $data);
 		} else {
-			echo "
-				<script>
-					alert('Access Denied');
-					history.go(-1);
-				</script>
-			";	
+			redirect('/');	
 		}
 	}
 
@@ -74,12 +64,7 @@ class SupportController extends CI_Controller
 			$data['admin'] = $this->db->query("SELECT * FROM penunjang_medis WHERE id_penunjang='$id'")->result();
 			$this->load->view('pages/Admin/support/edit', $data);
 		} else {
-			echo "
-				<script>
-					alert('Access Denied');
-					history.go(-1);
-				</script>
-			";	
+			redirect('/');		
 		}
 	}
 

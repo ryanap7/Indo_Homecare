@@ -33,9 +33,9 @@ class CalendarController extends CI_Controller {
 		foreach($event_data->result_array() as $row){
 			$data[] = array(
 				'id'				=> $row['id_employee'],
-				'title'				=> $row['name'],
+				'title'				=> 'Expired	Kontrak '.$row['name'],
 				'start'				=> $row['date'],
-				'backgroundColor'	=> '#3ABAF4',
+				'backgroundColor'	=> '#DC3545',
       			'borderColor'		=> '#fff',
       			'textColor'			=> '#fff'
 			);

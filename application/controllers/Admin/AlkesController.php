@@ -20,12 +20,7 @@ class AlkesController extends CI_Controller
 			$data['admin']	 	= $this->db->query("SELECT * FROM alkes")->result();
 			$this->load->view('pages/Admin/alkes/index.php', $data);
 		} else {
-			echo "
-				<script>
-					alert('Access Denied');
-					history.go(-1);
-				</script>
-			";	
+			redirect('/');	
 		}
 	}
 
@@ -37,12 +32,7 @@ class AlkesController extends CI_Controller
 			);
 			$this->load->view('pages/Admin/alkes/add', $data);
 		} else {
-			echo "
-				<script>
-					alert('Access Denied');
-					history.go(-1);
-				</script>
-			";	
+			redirect('/');	
 		}
 	}
 
@@ -72,12 +62,7 @@ class AlkesController extends CI_Controller
 			$data['admin'] = $this->db->query("SELECT * FROM alkes WHERE id_alkes='$id'")->result();
 			$this->load->view('pages/Admin/alkes/edit', $data);
 		} else {
-			echo "
-				<script>
-					alert('Access Denied');
-					history.go(-1);
-				</script>
-			";	
+			redirect('/');	
 		}
 	}
 

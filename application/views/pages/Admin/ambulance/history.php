@@ -41,7 +41,7 @@
 												<tr>
 													<td><?= $no++?></td>
 													<td><?= $data->name?></td>
-													<td><?= $data->harga?></td>
+													<td>Rp. <?= rupiah($data->harga)?></td>
 													<td>
 													<?php if ($data->status_peminjaman === '0') { ?>
 														<div class="badges">

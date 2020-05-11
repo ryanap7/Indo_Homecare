@@ -11,10 +11,9 @@ class Pdf extends TCPDF
 
     public function Header() {
         // Logo
-    $image_file = K_PATH_IMAGES.'logo.jpeg';
-    //$image_file = "<img src=\"assets/logo.jpeg\" width=\"180\" height=\"70\"/>";
+    $image_file = K_PATH_IMAGES.'logo2.png';
     $this->setJPEGQuality(90);
-    $this->Image($image_file, 10, 10, 75, 50, 'JPG', '', 'T', false, 300, '', false, false, 0, false, false, false);
+    $this->Image($image_file, 20, 20, 50, 16, 'PNG', '', 'T', false, 300, '', false, false, 0, false, false, false);
       $this->SetY(10);
       $table="<table align=\"right\">
          <tr>
@@ -45,7 +44,6 @@ class Pdf extends TCPDF
       $this->writeHTML($table, true, false, false, false, '');
       $this->writeHTML("<hr>", true, false, false, false, '');
       $this->SetMargins(10, 50   , 10, true);
-
     }
 
     public function Footer() {

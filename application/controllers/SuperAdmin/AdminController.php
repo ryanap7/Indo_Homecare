@@ -21,12 +21,7 @@ class AdminController extends CI_Controller
 			$data['admin']	 	= $this->db->query("SELECT * FROM auth INNER JOIN hak_akses ON auth.role=hak_akses.id_role")->result();
 			$this->load->view('pages/SuperAdmin/admin/index.php', $data);
 		} else {
-			echo "
-				<script>
-					alert('Access Denied');
-					history.go(-1);
-				</script>
-			";	
+			redirect('/');
 		}
 	}
 
@@ -39,12 +34,7 @@ class AdminController extends CI_Controller
 			$data['hak_akses'] = $this->M_Role->get_data()->result();
 			$this->load->view('pages/SuperAdmin/admin/add', $data);
 		} else {
-			echo "
-				<script>
-					alert('Access Denied');
-					history.go(-1);
-				</script>
-			";	
+			redirect('/');
 		}
 	}
 
@@ -92,12 +82,7 @@ class AdminController extends CI_Controller
 			$data['admin'] = $this->db->query("SELECT * FROM auth WHERE id_auth='$id'")->result();
 			$this->load->view('pages/SuperAdmin/admin/edit', $data);
 		} else {
-			echo "
-				<script>
-					alert('Access Denied');
-					history.go(-1);
-				</script>
-			";	
+			redirect('/');
 		}
 	}
 

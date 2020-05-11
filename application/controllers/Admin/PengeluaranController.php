@@ -20,12 +20,7 @@ class PengeluaranController extends CI_Controller
 			$data['admin']	 	= $this->db->query("SELECT * FROM pengeluaran")->result();
 			$this->load->view('pages/Admin/pengeluaran/index.php', $data);
 		} else {
-			echo "
-				<script>
-					alert('Access Denied');
-					history.go(-1);
-				</script>
-			";	
+			redirect('/');		
 		}
 	}
 
@@ -37,12 +32,7 @@ class PengeluaranController extends CI_Controller
 			);
 			$this->load->view('pages/Admin/pengeluaran/add', $data);
 		} else {
-			echo "
-				<script>
-					alert('Access Denied');
-					history.go(-1);
-				</script>
-			";	
+			redirect('/');		
 		}
 	}
 
@@ -72,12 +62,7 @@ class PengeluaranController extends CI_Controller
 			$data['admin'] = $this->db->query("SELECT * FROM pengeluaran WHERE id_pengeluaran='$id'")->result();
 			$this->load->view('pages/Admin/pengeluaran/edit', $data);
 		} else {
-			echo "
-				<script>
-					alert('Access Denied');
-					history.go(-1);
-				</script>
-			";	
+			redirect('/');		
 		}
 	}
 

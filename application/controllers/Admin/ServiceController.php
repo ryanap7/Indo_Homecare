@@ -20,12 +20,7 @@ class ServiceController extends CI_Controller
 			$data['admin']	 	= $this->db->query("SELECT * FROM jasa_medis INNER JOIN category ON jasa_medis.id_category = category.id_category ORDER BY name DESC")->result();
 			$this->load->view('pages/Admin/service/index.php', $data);
 		} else {
-			echo "
-				<script>
-					alert('Access Denied');
-					history.go(-1);
-				</script>
-			";	
+			redirect('/');		
 		}
 	}
 
@@ -38,12 +33,7 @@ class ServiceController extends CI_Controller
 			$data['admin']	 	= $this->db->query("SELECT * FROM category")->result();
 			$this->load->view('pages/Admin/service/add', $data);
 		} else {
-			echo "
-				<script>
-					alert('Access Denied');
-					history.go(-1);
-				</script>
-			";	
+			redirect('/');		
 		}
 	}
 
@@ -78,12 +68,7 @@ class ServiceController extends CI_Controller
 			$data['admin'] = $this->db->query("SELECT * FROM jasa_medis WHERE id_jasa='$id'")->result();
 			$this->load->view('pages/Admin/service/edit', $data);
 		} else {
-			echo "
-				<script>
-					alert('Access Denied');
-					history.go(-1);
-				</script>
-			";	
+			redirect('/');		
 		}
 	}
 

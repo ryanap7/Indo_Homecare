@@ -30,9 +30,16 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="harga">Harga</label>
-                                        <input id="harga" type="text" class="form-control" name="harga" tabindex="1" required>
-                                        <div class="invalid-feedback">
-                                            Please fill in price
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">
+                                                    Rp
+                                                </div>
+                                            </div>
+                                            <input id="harga" type="text" name="harga" tabindex="1" class="form-control currency" required>
+                                            <div class="invalid-feedback">
+                                                Please fill in price
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="form-group">

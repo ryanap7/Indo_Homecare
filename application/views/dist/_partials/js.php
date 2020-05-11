@@ -116,6 +116,53 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   </script>
 
   <script>
+    $(document).ready(function() {
+      $('#ambulance').dataTable({
+        "bPaginate": true,
+        "bLengthChange": false,
+        "bFilter": true,
+        "bInfo": false,
+        "bAutoWidth": false 
+        });
+    });
+  </script>
+
+  <script>
+    $(document).ready(function() {
+      $('#alkes').dataTable({
+        "bPaginate": true,
+        "bLengthChange": false,
+        "bFilter": true,
+        "bInfo": false,
+        "bAutoWidth": false 
+        });
+    });
+  </script>
+  <script>
+    $(document).ready(function() {
+      $('#service').dataTable({
+        "bPaginate": true,
+        "bLengthChange": false,
+        "bFilter": true,
+        "bInfo": false,
+        "bAutoWidth": false 
+        });
+    });
+  </script>
+
+<script>
+    $(document).ready(function() {
+      $('#index').dataTable({
+        "bPaginate": true,
+        "bLengthChange": false,
+        "bFilter": true,
+        "bInfo": false,
+        "bAutoWidth": false 
+        });
+    });
+  </script>
+
+  <script>
     $("#myEvent").fullCalendar({
       height: 'auto',
       editable: true,
@@ -126,6 +173,48 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         right: ''
       },
       events: "<?= base_url(); ?>koordinator/calendar/load",
+    });
+  </script>
+
+  <script>
+    $("#eventAmbulance").fullCalendar({
+      height: 'auto',
+      editable: true,
+      displayEventTime: false,
+      header: {
+        left: 'prev,next today',
+        center: 'title',
+        right: ''
+      },
+      events: "<?= base_url(); ?>admin/calendar/load_ambulance",
+    });
+  </script>
+
+<script>
+    $("#eventService").fullCalendar({
+      height: 'auto',
+      editable: true,
+      displayEventTime: false,
+      header: {
+        left: 'prev,next today',
+        center: 'title',
+        right: ''
+      },
+      events: "<?= base_url(); ?>admin/calendar/load_service",
+    });
+  </script>
+
+<script>
+    $("#eventAlkes").fullCalendar({
+      height: 'auto',
+      editable: true,
+      displayEventTime: false,
+      header: {
+        left: 'prev,next today',
+        center: 'title',
+        right: ''
+      },
+      events: "<?= base_url(); ?>admin/calendar/load_alkes",
     });
   </script>
 
@@ -278,6 +367,139 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       });
 
       $('#cart_details').load("<?= base_url('admin/sewa_alkes/load');?>");
+    });
+
+  </script>
+  <script>
+    $(document).ready(function(){
+      data();
+      $("#filter1").change(function(){
+        data();
+      });
+    });
+
+    function data(){
+      var filter1 = $("#filter1").val();
+      $.ajax({
+        url: "<?= base_url('admin/report/filter') ?>",
+        data: "filter1="+filter1,
+        success:function(data){
+          $("#ambulance tbody").html(data);
+        }
+      });
+    }
+  </script>
+
+  <script>
+    $(document).ready(function(){
+      alkes();
+      $("#filter2").change(function(){
+        alkes();
+      });
+    });
+
+    function alkes(){
+      var filter2 = $("#filter2").val();
+      $.ajax({
+        url: "<?= base_url('admin/report/filter1') ?>",
+        data: "filter2="+filter2,
+        success:function(data){
+          $("#alkes tbody").html(data);
+        }
+      });
+    }
+  </script>
+
+  <script>
+    $(document).ready(function(){
+      service();
+      $("#filter3").change(function(){
+        service();
+      });
+    });
+
+    function service(){
+      var filter3 = $("#filter3").val();
+      $.ajax({
+        url: "<?= base_url('admin/report/filter2') ?>",
+        data: "filter3="+filter3,
+        success:function(data){
+          $("#service tbody").html(data);
+        }
+      });
+    }
+  </script>
+
+<script>
+    $(document).ready(function(){
+      pengeluaran();
+      $("#filter4").change(function(){
+        pengeluaran();
+      });
+    });
+
+    function pengeluaran(){
+      var filter4 = $("#filter4").val();
+      $.ajax({
+        url: "<?= base_url('admin/report/filter3') ?>",
+        data: "filter4="+filter4,
+        success:function(data){
+          $("#index tbody").html(data);
+        }
+      });
+    }
+  </script>
+
+  <script>
+    var jumlah = [];
+    console.log(jumlah);
+    $.post("<?= base_url('admin/dashboard/service') ?>",
+      function(data){
+        var obj = JSON.parse(data);
+        $.each(obj, function(test,item){
+          jumlah.push(item.a);
+        });
+      });
+
+      $.post("<?= base_url('admin/dashboard/alkes') ?>",
+      function(data){
+        var obj = JSON.parse(data);
+        $.each(obj, function(test,item){
+          jumlah.push(item.b);
+        });
+      });
+      $.post("<?= base_url('admin/dashboard/ambulance') ?>",
+      function(data){
+        var obj = JSON.parse(data);
+        $.each(obj, function(test,item){
+          jumlah.push(item.c);
+        });
+      });
+    var ctx = document.getElementById("statistik").getContext('2d');
+    var myChart = new Chart(ctx, {
+      type: 'pie',
+      data: {
+        datasets: [{
+          data: jumlah,
+          backgroundColor: [
+            '#63ed7a',
+            '#fc544b',
+            '#6777ef',
+          ],
+          label: 'Dataset 1'
+        }],
+        labels: [
+          'Penyedia Jasa',
+          'Sewa Alkes',
+          'Sewa Ambulance'
+        ],
+      },
+      options: {
+        responsive: true,
+        legend: {
+          position: 'bottom',
+        },
+      }
     });
   </script>
 </body></html>

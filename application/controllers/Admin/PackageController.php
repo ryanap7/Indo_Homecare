@@ -20,12 +20,7 @@ class PackageController extends CI_Controller
 			$data['admin']	 	= $this->db->query("SELECT * FROM paket")->result();
 			$this->load->view('pages/Admin/package/index.php', $data);
 		} else {
-			echo "
-				<script>
-					alert('Access Denied');
-					history.go(-1);
-				</script>
-			";	
+			redirect('/');	
 		}
 	}
 
@@ -37,12 +32,7 @@ class PackageController extends CI_Controller
 			);
 			$this->load->view('pages/Admin/package/add', $data);
 		} else {
-			echo "
-				<script>
-					alert('Access Denied');
-					history.go(-1);
-				</script>
-			";	
+			redirect('/');	
 		}
 	}
 
@@ -72,12 +62,7 @@ class PackageController extends CI_Controller
 			$data['admin'] = $this->db->query("SELECT * FROM paket WHERE id_paket='$id'")->result();
 			$this->load->view('pages/Admin/package/edit', $data);
 		} else {
-			echo "
-				<script>
-					alert('Access Denied');
-					history.go(-1);
-				</script>
-			";	
+			redirect('/');		
 		}
 	}
 
