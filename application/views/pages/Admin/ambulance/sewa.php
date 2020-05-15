@@ -19,6 +19,16 @@
                             <div class="card-body">
                                 <form method="post" class="needs-validation" action="<?php echo site_url('admin/ambulance/sewa/store') ?>" novalidate="">
                                     <div class="form-group">
+                                        <label>Pilih Client</label>
+                                        <select class="form-control selectric" id="client" name="client">
+                                            <option value="" selected disabled>-- Choose Your Client --</option>
+                                            <?php
+                                            foreach($client as $data) : ?>
+                                            <option value="<?= $data->id_client?>"><?= $data->nama?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
                                         <label>Pilih Ambulance</label>
                                         <select class="form-control selectric" id="name" name="name">
                                             <option value="" selected disabled>-- Choose Your Ambulance --</option>

@@ -18,14 +18,12 @@ class DashboardController extends CI_Controller {
 			);
 			$data['client'] = $this->db->query('SELECT * FROM client')->num_rows();
 			$data['ambulance'] = $this->db->query('SELECT * FROM sewa_ambulance WHERE status_peminjaman = 1')->num_rows();
-			$data['alkes'] 	   = $this->db->query('SELECT * FROM sewa_alkes')->num_rows();
-			$data['cancel_alkes'] = $this->db->query('SELECT * FROM sewa_alkes WHERE status = 0')->num_rows();
-			$data['pending_alkes'] = $this->db->query('SELECT * FROM sewa_alkes WHERE status = 1')->num_rows();
-			$data['success_alkes'] = $this->db->query('SELECT * FROM sewa_alkes WHERE status = 2')->num_rows();
 			$data['service'] 	   = $this->db->query('SELECT * FROM transaction')->num_rows();
 			$data['cancel_service'] = $this->db->query('SELECT * FROM transaction WHERE status = 0')->num_rows();
 			$data['pending_service'] = $this->db->query('SELECT * FROM transaction WHERE status = 1')->num_rows();
 			$data['success_service'] = $this->db->query('SELECT * FROM transaction WHERE status = 2')->num_rows();
+
+			$data['service7']  = $this->db->query("SELECT * FROM transaction INNER JOIN client ON transaction.id_client=client.id_client WHERE transaction.status = 2 LIMIT 5")->result();
 			$this->load->view('pages/Admin/dashboard/index.php', $data);
 		} else {
 			redirect('/');	
@@ -38,9 +36,9 @@ class DashboardController extends CI_Controller {
 		echo json_encode($data);
 	}
 
-	public function alkes()
+	public function service_()
 	{
-		$data = $this->M_Dashboard->alkes();
+		$data = $this->db->query('SELECT nama_layanan, COUNT(nama_layanan) AS jumlah_jual FROM invoice GROUP BY nama_layanan ORDER BY jumlah_jual  DESC')->result();
 		echo json_encode($data);
 	}
 	

@@ -17,6 +17,7 @@ class SewaAmbulanceController extends CI_Controller
 			$data = array(
 				'title' => "Data Ambulance"
 			);
+			$data['client']	 	= $this->db->query("SELECT * FROM client")->result();
 			$data['admin']	 	= $this->db->query("SELECT * FROM ambulance")->result();
 			$this->load->view('pages/Admin/ambulance/sewa.php', $data);
 		} else {
@@ -26,10 +27,12 @@ class SewaAmbulanceController extends CI_Controller
 
 	public function store()
     {
+		$client              		= $this->input->post('client');
 		$name              		= $this->input->post('name');
 		$harga					= $this->input->post('harga');
 		
 		$data= array(
+			'id_client'			=> $client,
 			'id_ambulance'		=> $name,
 			'harga'				=> $harga,
 			'status_peminjaman'	=> 0,
@@ -81,7 +84,9 @@ class SewaAmbulanceController extends CI_Controller
 			$data = array(
 				'title' => "Data Ambulance"
 			);
-			$data['admin']	 	= $this->db->query("SELECT * FROM sewa_ambulance INNER JOIN ambulance ON sewa_ambulance.id_ambulance = ambulance.id_ambulance")->result();
+			$data['admin']	 	= $this->db->query("SELECT * FROM client 
+													INNER JOIN sewa_ambulance ON client.id_client = sewa_ambulance.id_client 
+													INNER JOIN ambulance ON sewa_ambulance.id_ambulance = ambulance.id_ambulance")->result();
 			$this->load->view('pages/Admin/ambulance/history.php', $data);
 		} else {
 			redirect('/');		

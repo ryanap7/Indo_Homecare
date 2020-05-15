@@ -20,7 +20,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="fc-overflow">
-                                    <div id="eventAlkes"></div>
+                                    <div id="eventCalendar"></div>
                                 </div>
                             </div>
                         </div>

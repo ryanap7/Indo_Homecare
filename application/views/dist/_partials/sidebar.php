@@ -4,10 +4,10 @@
 	<div class="main-sidebar sidebar-style-2">
 		<aside id="sidebar-wrapper">
 			<div class="sidebar-brand">
-				<a href="<?php echo base_url(); ?>dist/index">Indo HomeCare</a>
+				<a href="<?php echo base_url(); ?>">Indo HomeCare</a>
 			</div>
 			<div class="sidebar-brand sidebar-brand-sm">
-				<a href="<?php echo base_url(); ?>dist/index">IHC</a>
+				<a href="<?php echo base_url(); ?>">IHC</a>
 			</div>
 			<?php if ($this->session->userdata('role') === '1') {  ?>
 			<ul class="sidebar-menu">
@@ -32,6 +32,12 @@
 						<span>Data Client</span>
 					</a>
 				</li>
+				<li class="<?= $this->uri->segment(2) == 'employees'  ? 'active' : ''; ?>">
+					<a class="nav-link" href="<?= base_url('superadmin/employees') ?>">
+						<i class="fas fa-users"></i> 
+						<span>Data Karyawan</span>
+					</a>
+				</li>
 				<li class="dropdown <?= $this->uri->segment(2) == 'service'  ? 'active' : ''; ?>">
 					<a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-list"></i> <span>Data Layanan</span></a>
 					<ul class="dropdown-menu">
@@ -46,7 +52,6 @@
 					<a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fa fa-indent"></i> <span>Transaksi Masuk</span></a>
 					<ul class="dropdown-menu">
 						<li><a class="nav-link" href="<?= base_url('superadmin/report/ambulance') ?>">Sewa Ambulance</a></li>
-						<li><a class="nav-link" href="<?= base_url('superadmin/report/alkes') ?>">Sewa Alkes</a></li>
 						<li><a class="nav-link" href="<?= base_url('superadmin/report/service') ?>">Penyedia Jasa</a></li>
 					</ul>
 				</li>
@@ -57,13 +62,11 @@
 					</ul>
 				</li>
 				<li class="menu-header">Kalender</li>
-				<li class="dropdown <?= $this->uri->segment(2) == 'calender'  ? 'active' : ''; ?>">
-					<a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fa fa-calendar"></i> <span>Kalendar</span></a>
-					<ul class="dropdown-menu">
-						<li><a class="nav-link" href="<?= base_url('superadmin/calendar/ambulance') ?>">Sewa Ambulance</a></li>
-						<li><a class="nav-link" href="<?= base_url('superadmin/calendar/alkes') ?>">Sewa Alkes</a></li>
-						<li><a class="nav-link" href="<?= base_url('superadmin/calendar/service') ?>">Penyedia Jasa</a></li>
-					</ul>
+				<li class="<?= $this->uri->segment(2) == 'calendar' ? 'active' : ''; ?>">
+					<a class="nav-link" href="<?= base_url('superadmin/calendar') ?>">
+						<i class="fas fa-calendar"></i> 
+						<span>Kalender</span>
+					</a>
 				</li>
 				<li class="menu-header">Setting</li>
 				<li class="<?= $this->uri->segment(2) == 'fee'  ? 'active' : ''; ?>">
@@ -108,15 +111,6 @@
 						<li><a class="nav-link" href="<?= base_url('admin/ambulance/sewa/history') ?>">History</a></li>
 					</ul>
 				</li>
-				<li class="dropdown <?= $this->uri->segment(2) == 'sewa_alkes'  ? 'active' : ''; ?>">
-					<a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fa fa-exchange-alt"></i> <span>Peralatan Kesehatan</span></a>
-					<ul class="dropdown-menu">
-						<li><a class="nav-link" href="<?= base_url('admin/sewa_alkes/request') ?>">Permintaan Transaksi</a></li>
-						<li><a class="nav-link" href="<?= base_url('admin/sewa_alkes/failed') ?>">Transaksi Gagal</a></li>
-						<li><a class="nav-link" href="<?= base_url('admin/sewa_alkes') ?>">Transaksi Pending</a></li>
-						<li><a class="nav-link" href="<?= base_url('admin/sewa_alkes/success') ?>">Transaksi Sukses</a></li>
-					</ul>
-				</li>
 				<li class="dropdown <?= $this->uri->segment(2) == 'invoice'  ? 'active' : ''; ?>">
 					<a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fa fa-shopping-cart"></i> <span>Penyedia Jasa</span></a>
 					<ul class="dropdown-menu">
@@ -137,7 +131,6 @@
 					<a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fa fa-indent"></i> <span>Transaksi Masuk</span></a>
 					<ul class="dropdown-menu">
 						<li><a class="nav-link" href="<?= base_url('admin/report/ambulance') ?>">Sewa Ambulance</a></li>
-						<li><a class="nav-link" href="<?= base_url('admin/report/alkes') ?>">Sewa Alkes</a></li>
 						<li><a class="nav-link" href="<?= base_url('admin/report/service') ?>">Penyedia Jasa</a></li>
 					</ul>
 				</li>
@@ -148,13 +141,11 @@
 					</ul>
 				</li>
 				<li class="menu-header">Kalender</li>
-				<li class="dropdown <?= $this->uri->segment(2) == 'calender'  ? 'active' : ''; ?>">
-					<a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fa fa-calendar"></i> <span>Kalendar</span></a>
-					<ul class="dropdown-menu">
-						<li><a class="nav-link" href="<?= base_url('admin/calendar/ambulance') ?>">Sewa Ambulance</a></li>
-						<li><a class="nav-link" href="<?= base_url('admin/calendar/alkes') ?>">Sewa Alkes</a></li>
-						<li><a class="nav-link" href="<?= base_url('admin/calendar/service') ?>">Penyedia Jasa</a></li>
-					</ul>
+				<li class="<?= $this->uri->segment(2) == 'calendar' ? 'active' : ''; ?>">
+					<a class="nav-link" href="<?= base_url('admin/calendar') ?>">
+						<i class="fas fa-calendar"></i> 
+						<span>Kalender</span>
+					</a>
 				</li>
 				<li class="menu-header">Setting</li>
 				<li class="<?= $this->uri->segment(2) == 'fee'  ? 'active' : ''; ?>">

@@ -25,6 +25,7 @@
 												<th class="text-center">
 													#
 												</th>
+												<th>Nama Client</th>
 												<th>Nama Ambulance</th>
 												<th>Harga</th>
 												<th>Status</th>
@@ -40,6 +41,7 @@
 												$newDate = date("d M Y", strtotime($originalDate));?>
 												<tr>
 													<td><?= $no++?></td>
+													<td><?= $data->nama?></td>
 													<td><?= $data->name?></td>
 													<td>Rp. <?= rupiah($data->harga)?></td>
 													<td>

@@ -19,12 +19,7 @@ class CalendarController extends CI_Controller {
 			);
 			$this->load->view('pages/Koordinator/calendar/index.php', $data);
 		} else {
-			echo "
-				<script>
-					alert('Access Denied');
-					history.go(-1);
-				</script>
-			";	
+			redirect('/');
 		}
 	}
 	

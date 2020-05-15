@@ -32,13 +32,21 @@
 										<tbody>
                                             <?php
                                                 $no =1;
-												foreach($invoice as $data) : ?>
+												$subs = 0;
+												foreach($invoice as $data) : 
+												$subs += $data->harga;
+												?>
 												<tr>
 													<td><?= $no++?></td>
 													<td><?= $data->nama_layanan." - ". $data->periode?></td>
 													<td>Rp. <?= rupiah($data->harga);?></td>
 												</tr>
 											<?php endforeach;?>
+											<tr>
+												<td></td>
+												<td></td>
+												<td>Rp. <?= rupiah($subs);?></td>
+											</tr>
 										</tbody>
 									</table>
 								</div>

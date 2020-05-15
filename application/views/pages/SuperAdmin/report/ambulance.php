@@ -53,6 +53,7 @@
 												<th class="text-center">
 													#
 												</th>
+												<th>Nama Client</th>
 												<th>Nama Ambulance</th>
 												<th>Harga</th>
 												<th>Tanggal Peminjaman</th>

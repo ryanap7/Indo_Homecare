@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 07 Bulan Mei 2020 pada 22.07
+-- Waktu pembuatan: 15 Bulan Mei 2020 pada 18.43
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.4.1
 
@@ -135,28 +135,6 @@ INSERT INTO `client` (`id_client`, `nama`, `nik`, `email`, `phone`, `alamat`, `s
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `detail_sewa`
---
-
-CREATE TABLE `detail_sewa` (
-  `id_detail` int(11) NOT NULL,
-  `id_sewa` int(11) NOT NULL,
-  `nama` varchar(100) NOT NULL,
-  `qty` int(11) NOT NULL,
-  `harga` int(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data untuk tabel `detail_sewa`
---
-
-INSERT INTO `detail_sewa` (`id_detail`, `id_sewa`, `nama`, `qty`, `harga`) VALUES
-(3, 3, 'A', 2, 900000),
-(4, 3, 'B', 4, 20000);
-
--- --------------------------------------------------------
-
---
 -- Struktur dari tabel `employees`
 --
 
@@ -178,8 +156,8 @@ CREATE TABLE `employees` (
 --
 
 INSERT INTO `employees` (`id_employee`, `name`, `nip`, `id_profesi`, `email`, `phone`, `address`, `status`, `img`, `date`) VALUES
-(6, 'Ryan', '779768475', 3, 'Ryan.Aprianto77777@gmail.com', '089639626048', 'Blok Selasa RT/RW 02/03\r\nDesa Panjalin Kidul', '1', 'default.png', '2020-05-15'),
-(7, 'Ibnu', '786794707', 5, 'ibnusoffyan@gmail.com', '09898687', 'Cirebon', '0', 'man.png', '2020-05-23');
+(8, 'Test Revisi Edit', '2020-0512001', 1, 'test@gmail.com', '098078687', 'Test', '1', 'default.png', '2020-05-22'),
+(9, 'Test 2', '2020-0512002', 5, 'test@gmail.com', '758957947', 'C', '0', 'default.png', '2020-05-12');
 
 -- --------------------------------------------------------
 
@@ -220,11 +198,14 @@ CREATE TABLE `invoice` (
 --
 
 INSERT INTO `invoice` (`id_invoice`, `id_transaction`, `nama_layanan`, `periode`, `harga`) VALUES
-(19, 14, 'Perawat ICU', 'Minggu', 5860000),
-(20, 15, 'Caregiver Ahli', 'Minggu', 2450000),
-(21, 15, 'Caregiver Ahli', 'Bulan', 6000000),
-(24, 18, 'Caregiver Ahli', 'Bulan', 6000000),
-(25, 19, 'Paket Homecare D', 'Bulan', 65000000);
+(27, 22, 'B', 'Bulan', 20000),
+(28, 22, 'B', 'Minggu', 200),
+(29, 22, 'Paket Homecare A', 'Bulan', 35000000),
+(30, 22, 'Therapist', '1x', 400000),
+(31, 22, 'Perawat Umum', 'Bulan', 6500000),
+(32, 23, 'A', 'Minggu', 100),
+(33, 23, 'Perawat Umum', 'Minggu', 2500000),
+(34, 24, 'A', 'Bulan', 900000);
 
 -- --------------------------------------------------------
 
@@ -364,33 +345,12 @@ INSERT INTO `profesi` (`id_profesi`, `nama_bagian`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `sewa_alkes`
---
-
-CREATE TABLE `sewa_alkes` (
-  `id_sewa` int(11) NOT NULL,
-  `id_client` int(11) NOT NULL,
-  `no_invoice` varchar(20) NOT NULL,
-  `status` char(1) NOT NULL,
-  `date` date NOT NULL,
-  `date_expired` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data untuk tabel `sewa_alkes`
---
-
-INSERT INTO `sewa_alkes` (`id_sewa`, `id_client`, `no_invoice`, `status`, `date`, `date_expired`) VALUES
-(3, 3, 'NMK/20.0506001', '2', '2020-05-06', '2020-06-05');
-
--- --------------------------------------------------------
-
---
 -- Struktur dari tabel `sewa_ambulance`
 --
 
 CREATE TABLE `sewa_ambulance` (
   `id_sewa` int(11) NOT NULL,
+  `id_client` int(11) NOT NULL,
   `id_ambulance` int(11) NOT NULL,
   `harga` varchar(20) NOT NULL,
   `status_peminjaman` char(1) NOT NULL,
@@ -401,10 +361,8 @@ CREATE TABLE `sewa_ambulance` (
 -- Dumping data untuk tabel `sewa_ambulance`
 --
 
-INSERT INTO `sewa_ambulance` (`id_sewa`, `id_ambulance`, `harga`, `status_peminjaman`, `date`) VALUES
-(2, 2, 'Rp. 500.000', '1', '2020-05-03'),
-(4, 2, 'Rp. 500.000', '1', '2020-05-03'),
-(5, 3, 'Rp. 500.000', '1', '2020-05-03');
+INSERT INTO `sewa_ambulance` (`id_sewa`, `id_client`, `id_ambulance`, `harga`, `status_peminjaman`, `date`) VALUES
+(6, 3, 2, '50000', '1', '2020-05-12');
 
 -- --------------------------------------------------------
 
@@ -426,11 +384,9 @@ CREATE TABLE `transaction` (
 --
 
 INSERT INTO `transaction` (`id`, `id_client`, `no_invoice`, `status`, `date`, `date_expired`) VALUES
-(14, 3, 'NMK/20.0504001', '2', '2020-05-04', '2020-05-11'),
-(15, 3, 'NMK/20.0504002', '2', '2020-05-04', '2020-06-03'),
-(18, 4, 'NMK/20.0505001', '1', '2020-05-05', '2020-06-04'),
-(19, 3, 'NMK/20.0505002', '0', '2020-05-05', '2020-06-04'),
-(20, 3, 'NMK/20.0505002', '0', '2020-05-05', '2020-05-12');
+(22, 3, 'NMK/20.0512001', '2', '2020-05-13', '2020-06-12'),
+(23, 2, 'NMK/20.0512002', '2', '2020-05-13', '2020-05-20'),
+(24, 2, 'NMK/20.0513001', '2', '2020-05-13', '2020-06-12');
 
 --
 -- Indexes for dumped tables
@@ -466,13 +422,6 @@ ALTER TABLE `category`
 --
 ALTER TABLE `client`
   ADD PRIMARY KEY (`id_client`);
-
---
--- Indeks untuk tabel `detail_sewa`
---
-ALTER TABLE `detail_sewa`
-  ADD PRIMARY KEY (`id_detail`),
-  ADD KEY `id_sewa` (`id_sewa`);
 
 --
 -- Indeks untuk tabel `employees`
@@ -526,18 +475,12 @@ ALTER TABLE `profesi`
   ADD PRIMARY KEY (`id_profesi`);
 
 --
--- Indeks untuk tabel `sewa_alkes`
---
-ALTER TABLE `sewa_alkes`
-  ADD PRIMARY KEY (`id_sewa`),
-  ADD KEY `id_client` (`id_client`);
-
---
 -- Indeks untuk tabel `sewa_ambulance`
 --
 ALTER TABLE `sewa_ambulance`
   ADD PRIMARY KEY (`id_sewa`),
-  ADD KEY `id_ambulance` (`id_ambulance`);
+  ADD KEY `id_ambulance` (`id_ambulance`),
+  ADD KEY `id_client` (`id_client`);
 
 --
 -- Indeks untuk tabel `transaction`
@@ -581,16 +524,10 @@ ALTER TABLE `client`
   MODIFY `id_client` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT untuk tabel `detail_sewa`
---
-ALTER TABLE `detail_sewa`
-  MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
 -- AUTO_INCREMENT untuk tabel `employees`
 --
 ALTER TABLE `employees`
-  MODIFY `id_employee` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_employee` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT untuk tabel `hak_akses`
@@ -602,7 +539,7 @@ ALTER TABLE `hak_akses`
 -- AUTO_INCREMENT untuk tabel `invoice`
 --
 ALTER TABLE `invoice`
-  MODIFY `id_invoice` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id_invoice` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT untuk tabel `jasa_medis`
@@ -635,22 +572,16 @@ ALTER TABLE `profesi`
   MODIFY `id_profesi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT untuk tabel `sewa_alkes`
---
-ALTER TABLE `sewa_alkes`
-  MODIFY `id_sewa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
 -- AUTO_INCREMENT untuk tabel `sewa_ambulance`
 --
 ALTER TABLE `sewa_ambulance`
-  MODIFY `id_sewa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_sewa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT untuk tabel `transaction`
 --
 ALTER TABLE `transaction`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
@@ -661,12 +592,6 @@ ALTER TABLE `transaction`
 --
 ALTER TABLE `auth`
   ADD CONSTRAINT `auth_ibfk_1` FOREIGN KEY (`role`) REFERENCES `hak_akses` (`id_role`);
-
---
--- Ketidakleluasaan untuk tabel `detail_sewa`
---
-ALTER TABLE `detail_sewa`
-  ADD CONSTRAINT `detail_sewa_ibfk_1` FOREIGN KEY (`id_sewa`) REFERENCES `sewa_alkes` (`id_sewa`);
 
 --
 -- Ketidakleluasaan untuk tabel `employees`
@@ -687,16 +612,11 @@ ALTER TABLE `jasa_medis`
   ADD CONSTRAINT `jasa_medis_ibfk_2` FOREIGN KEY (`id_category`) REFERENCES `category` (`id_category`);
 
 --
--- Ketidakleluasaan untuk tabel `sewa_alkes`
---
-ALTER TABLE `sewa_alkes`
-  ADD CONSTRAINT `sewa_alkes_ibfk_1` FOREIGN KEY (`id_client`) REFERENCES `client` (`id_client`);
-
---
 -- Ketidakleluasaan untuk tabel `sewa_ambulance`
 --
 ALTER TABLE `sewa_ambulance`
-  ADD CONSTRAINT `sewa_ambulance_ibfk_1` FOREIGN KEY (`id_ambulance`) REFERENCES `ambulance` (`id_ambulance`);
+  ADD CONSTRAINT `sewa_ambulance_ibfk_1` FOREIGN KEY (`id_ambulance`) REFERENCES `ambulance` (`id_ambulance`),
+  ADD CONSTRAINT `sewa_ambulance_ibfk_2` FOREIGN KEY (`id_client`) REFERENCES `client` (`id_client`);
 
 --
 -- Ketidakleluasaan untuk tabel `transaction`

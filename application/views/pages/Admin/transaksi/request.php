@@ -27,6 +27,9 @@
                                     <li class="nav-item">
                                         <a class="nav-link" id="contact-tab3" data-toggle="tab" href="#contact3" role="tab" aria-controls="contact" aria-selected="false">Paket HomeCare</a>
                                     </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="contact-tab3" data-toggle="tab" href="#alkes3" role="tab" aria-controls="contact" aria-selected="false">Peralatan Kesehatan</a>
+                                    </li>
                                 </ul>
                                 <br>
                                 <div class="tab-content" id="myTabContent2">
@@ -108,6 +111,39 @@
                                                             data-sesi="Bulan" 
                                                             data-price="'.$data->harga.'"
                                                             data-id="'.$data->id_paket.'">Add to cart</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                ';
+                                            }
+                                            ?>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="alkes3" role="tabpanel" aria-labelledby="alkes-tab3">
+                                        <div class="row">
+                                        <?php
+                                            foreach($alkes as $data)
+                                            {
+                                                echo '
+                                                <div class="col-12 col-md-6 col-lg-3">
+                                                    <div class="card card-dark">
+                                                        <div class="card-header">
+                                                            <h4 style="font-size: 16px">'.$data->name.'</h4>
+                                                        </div>
+                                                        <div class="card-body">
+                                                        </div>
+                                                        <div class="card-footer text-center" style="margin-top: -30px">
+                                                            <button type="button" name="add" class="btn btn-primary add_cart" 
+                                                            data-name="'.$data->name.'"
+                                                            data-price="'.$data->minggu.'"
+                                                            data-sesi="Minggu"
+                                                            data-id="'.$data->id_alkes.'">Mingguan</button>
+                                                            
+                                                            <button type="button" name="add" class="btn btn-primary add_cart" 
+                                                            data-name="'.$data->name.'"
+                                                            data-price="'.$data->bulan.'"
+                                                            data-sesi="Bulan"
+                                                            data-id="'.$data->id_alkes.'">Bulanan</button>
                                                         </div>
                                                     </div>
                                                 </div>

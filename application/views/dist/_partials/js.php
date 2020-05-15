@@ -17,7 +17,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <script src="<?php echo base_url(); ?>assets/modules/summernote/summernote-bs4.js"></script>
   <script src="<?php echo base_url(); ?>assets/modules/chocolat/dist/js/jquery.chocolat.min.js"></script>
   <script src="<?php echo base_url(); ?>assets/modules/simple-weather/jquery.simpleWeather.min.js"></script>
-  <script src="<?php echo base_url(); ?>assets/modules/chart.min.js"></script>
   <script src="<?php echo base_url(); ?>assets/modules/jqvmap/dist/jquery.vmap.min.js"></script>
   <script src="<?php echo base_url(); ?>assets/modules/jqvmap/dist/maps/jquery.vmap.world.js"></script>
   <script src="<?php echo base_url(); ?>assets/modules/summernote/summernote-bs4.js"></script>
@@ -27,9 +26,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <script src="<?php echo base_url(); ?>assets/modules/prism/prism.js"></script>
   <script src="<?php echo base_url(); ?>assets/modules/sticky-kit.js"></script>
   <script src="<?php echo base_url(); ?>assets/modules/chocolat/dist/js/jquery.chocolat.min.js"></script>
-  <script src="<?php echo base_url(); ?>assets/modules/dropzonejs/min/dropzone.min.js"></script>
   <script src="<?php echo base_url(); ?>assets/modules/jquery.sparkline.min.js"></script>
-  <script src="<?php echo base_url(); ?>assets/modules/chart.min.js"></script>
   <script src="<?php echo base_url(); ?>assets/modules/jqvmap/dist/jquery.vmap.min.js"></script>
   <script src="<?php echo base_url(); ?>assets/modules/jqvmap/dist/maps/jquery.vmap.world.js"></script>
   <script src="<?php echo base_url(); ?>assets/modules/jqvmap/dist/maps/jquery.vmap.indonesia.js"></script>
@@ -97,7 +94,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <script src="<?php echo base_url(); ?>assets/js/page/features-post-create.js"></script>
   <script src="<?php echo base_url(); ?>assets/js/page/features-posts.js"></script>
   <script src="<?php echo base_url(); ?>assets/js/page/features-setting-detail.js"></script>
-  <script src="<?php echo base_url(); ?>assets/js/page/utilities-contact.js"></script>
 
   <!-- Template JS File -->
   <script src="<?php echo base_url(); ?>assets/js/scripts.js"></script>
@@ -129,7 +125,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
   <script>
     $(document).ready(function() {
-      $('#alkes').dataTable({
+      $('#karyawan').dataTable({
         "bPaginate": true,
         "bLengthChange": false,
         "bFilter": true,
@@ -138,6 +134,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         });
     });
   </script>
+
+<script>
+    $(document).ready(function() {
+      $('#s_karyawan').dataTable({
+        "bPaginate": true,
+        "bLengthChange": false,
+        "bFilter": true,
+        "bInfo": false,
+        "bAutoWidth": false 
+        });
+    });
+  </script>
+
   <script>
     $(document).ready(function() {
       $('#service').dataTable({
@@ -177,7 +186,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   </script>
 
   <script>
-    $("#eventAmbulance").fullCalendar({
+    $("#eventCalendar").fullCalendar({
       height: 'auto',
       editable: true,
       displayEventTime: false,
@@ -186,35 +195,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         center: 'title',
         right: ''
       },
-      events: "<?= base_url(); ?>admin/calendar/load_ambulance",
-    });
-  </script>
-
-<script>
-    $("#eventService").fullCalendar({
-      height: 'auto',
-      editable: true,
-      displayEventTime: false,
-      header: {
-        left: 'prev,next today',
-        center: 'title',
-        right: ''
-      },
-      events: "<?= base_url(); ?>admin/calendar/load_service",
-    });
-  </script>
-
-<script>
-    $("#eventAlkes").fullCalendar({
-      height: 'auto',
-      editable: true,
-      displayEventTime: false,
-      header: {
-        left: 'prev,next today',
-        center: 'title',
-        right: ''
-      },
-      events: "<?= base_url(); ?>admin/calendar/load_alkes",
+      events: "<?= base_url(); ?>admin/calendar/load_calendar",
     });
   </script>
 
@@ -275,14 +256,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     });
   </script>
 
-  <script>
+  <!-- <script>
     $(document).ready(function(){
       $('.add').click(function(){
         var id      = $(this).data("id");
         var name    = $(this).data("name");
         var price   = $(this).data("price");
         var sesi    = $(this).data("sesi");
-        var qty     = $('#' + id).val();
 
         console.log(qty);
 
@@ -290,7 +270,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           $.ajax({
             url: "<?= base_url('admin/sewa_alkes/add_cart');?>",
             method: "POST",
-            data: {id:id, name:name, price:price, qty:qty, sesi:sesi},
+            data: {id:id, name:name, price:price, sesi:sesi},
 
             success:function(data){
               alert("Success Added to Cart");
@@ -369,7 +349,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       $('#cart_details').load("<?= base_url('admin/sewa_alkes/load');?>");
     });
 
-  </script>
+  </script> -->
+
   <script>
     $(document).ready(function(){
       data();
@@ -390,25 +371,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     }
   </script>
 
-  <script>
-    $(document).ready(function(){
-      alkes();
-      $("#filter2").change(function(){
-        alkes();
-      });
-    });
-
-    function alkes(){
-      var filter2 = $("#filter2").val();
-      $.ajax({
-        url: "<?= base_url('admin/report/filter1') ?>",
-        data: "filter2="+filter2,
-        success:function(data){
-          $("#alkes tbody").html(data);
-        }
-      });
-    }
-  </script>
 
   <script>
     $(document).ready(function(){
@@ -430,7 +392,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     }
   </script>
 
-<script>
+  <script>
     $(document).ready(function(){
       pengeluaran();
       $("#filter4").change(function(){
@@ -451,21 +413,52 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   </script>
 
   <script>
+    $(document).ready(function(){
+      profesi();
+      $("#filter_profesi").change(function(){
+        profesi();
+      });
+    });
+
+    function profesi(){
+      var filter_profesi = $("#filter_profesi").val();
+      $.ajax({
+        url: "<?= base_url('koordinator/employees/filter_profesi') ?>",
+        data: "filter_profesi="+filter_profesi,
+        success:function(data){
+          $("#karyawan tbody").html(data);
+        }
+      });
+    }
+  </script>
+
+  <script>
+    $(document).ready(function(){
+      profesi();
+      $("#filter_profesi2").change(function(){
+        profesi();
+      });
+    });
+
+    function profesi(){
+      var filter_profesi = $("#filter_profesi2").val();
+      $.ajax({
+        url: "<?= base_url('superadmin/employees/filter_profesi') ?>",
+        data: "filter_profesi="+filter_profesi,
+        success:function(data){
+          $("#s_karyawan tbody").html(data);
+        }
+      });
+    }
+  </script>
+
+  <script>
     var jumlah = [];
-    console.log(jumlah);
     $.post("<?= base_url('admin/dashboard/service') ?>",
       function(data){
         var obj = JSON.parse(data);
         $.each(obj, function(test,item){
           jumlah.push(item.a);
-        });
-      });
-
-      $.post("<?= base_url('admin/dashboard/alkes') ?>",
-      function(data){
-        var obj = JSON.parse(data);
-        $.each(obj, function(test,item){
-          jumlah.push(item.b);
         });
       });
       $.post("<?= base_url('admin/dashboard/ambulance') ?>",
@@ -484,19 +477,69 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           backgroundColor: [
             '#63ed7a',
             '#fc544b',
-            '#6777ef',
           ],
-          label: 'Dataset 1'
         }],
         labels: [
           'Penyedia Jasa',
-          'Sewa Alkes',
           'Sewa Ambulance'
         ],
       },
       options: {
         responsive: true,
         legend: {
+          display: false,
+          position: 'bottom',
+        },
+      }
+    });
+  </script>
+
+  <script>
+    var x = [];
+    var y = [];
+    $.post("<?= base_url('admin/dashboard/service_') ?>",
+      function(data){
+        var obj = JSON.parse(data);
+        $.each(obj, function(test,item){
+          x.push(item.jumlah_jual);
+          y.push(item.nama_layanan);
+        });
+      });
+    var ctx = document.getElementById("statistik-produk").getContext('2d');
+    var myChart = new Chart(ctx, {
+      type: 'pie',
+      data: {
+        datasets: [{
+          data: x,
+          backgroundColor: [
+            '#abcdef',
+            '#c2cc3b',
+            '#ff00ff',
+            '#ff00ff',
+            '#ffa500',
+            '#ff7373',
+            '#ffd700',
+            '#133337',
+            '#cbcba9',
+            '#696969',
+            '#407294',
+            '#baebae',
+            '#ff4646',
+            '#37c8ae',
+            '#327345',
+            '#c1ffc1',
+            '#efcdcd',
+            '#e3dab0',
+            '#afd2c3',
+            '#777777',
+          ],
+        }],
+        labels: y,
+      },
+      options: {
+        responsive: true,
+        legend: {
+          display: false,
           position: 'bottom',
         },
       }

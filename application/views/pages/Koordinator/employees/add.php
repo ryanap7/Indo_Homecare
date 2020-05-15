@@ -26,8 +26,8 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="nip">NIP</label>
-                                        <input id="nip" type="number" class="form-control" name="nip" tabindex="1" placeholder="Enter your NIP" required>
+                                        <label for="nip">ID Karyawan</label>
+                                        <input id="nip" type="text" class="form-control" name="nip" tabindex="1" value="<?= $newCode ?>" readonly>
                                         <div class="invalid-feedback">
                                             Please fill in your NIP
                                         </div>

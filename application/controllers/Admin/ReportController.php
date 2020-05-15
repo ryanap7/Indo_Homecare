@@ -30,7 +30,7 @@ class ReportController extends CI_Controller
 			$data = array(
 				'title' => "Laporan Keuangan"
 			);
-			$data['admin']	 			= $this->db->query("SELECT * FROM sewa_ambulance INNER JOIN ambulance ON sewa_ambulance.id_ambulance = ambulance.id_ambulance WHERE sewa_ambulance.status_peminjaman = 1")->result();
+			$data['admin']	 			= $this->db->query("SELECT * FROM client INNER JOIN sewa_ambulance ON client.id_client = sewa_ambulance.id_client INNER JOIN ambulance ON sewa_ambulance.id_ambulance = ambulance.id_ambulance WHERE sewa_ambulance.status_peminjaman = 1")->result();
 			$data['tahun']	 			= $this->db->query("SELECT DISTINCT date FROM sewa_ambulance WHERE sewa_ambulance.status_peminjaman = 1")->result();
 			$this->load->view('pages/Admin/report/ambulance.php', $data);
 		} else {
@@ -38,18 +38,6 @@ class ReportController extends CI_Controller
 		}
 	}
     
-    public function alkes()
-	{
-		if ($this->session->userdata('role') === '2') {
-			$data = array(
-				'title' => "Laporan Keuangan"
-			);
-			$data['admin']	 	= $this->db->query("SELECT * FROM sewa_alkes INNER JOIN detail_sewa ON sewa_alkes.id_sewa = detail_sewa.id_sewa WHERE sewa_alkes.status = 2")->result();
-			$this->load->view('pages/Admin/report/alkes.php', $data);
-		} else {
-			redirect('/');	
-		}
-    }
     
     public function service()
 	{
@@ -57,7 +45,7 @@ class ReportController extends CI_Controller
 			$data = array(
 				'title' => "Laporan Keuangan"
 			);
-			$data['admin']	 	= $this->db->query("SELECT * FROM transaction INNER JOIN invoice ON transaction.id = invoice.id_transaction WHERE transaction.status = 2")->result();
+			$data['admin']	 	= $this->db->query("SELECT * FROM client INNER JOIN transaction ON client.id_client = transaction.id_client INNER JOIN invoice ON transaction.id = invoice.id_transaction WHERE transaction.status = 2")->result();
 			$this->load->view('pages/Admin/report/service.php', $data);
 		} else {
 			redirect('/');	
@@ -73,9 +61,9 @@ class ReportController extends CI_Controller
 		);
 
 		if ($bulan == 00) {
-			$data	 			= $this->db->query("SELECT * FROM sewa_ambulance INNER JOIN ambulance ON sewa_ambulance.id_ambulance = ambulance.id_ambulance WHERE sewa_ambulance.status_peminjaman = 1")->result();
+			$data	 			= $this->db->query("SELECT * FROM client INNER JOIN sewa_ambulance ON client.id_client = sewa_ambulance.id_client INNER JOIN ambulance ON sewa_ambulance.id_ambulance = ambulance.id_ambulance WHERE sewa_ambulance.status_peminjaman = 1")->result();
 		} else {
-			$data	 			= $this->db->query("SELECT * FROM sewa_ambulance INNER JOIN ambulance ON sewa_ambulance.id_ambulance = ambulance.id_ambulance WHERE MONTH(date) = $bulan AND YEAR(date) = $tahun AND sewa_ambulance.status_peminjaman = 1")->result();
+			$data	 			= $this->db->query("SELECT * FROM client INNER JOIN sewa_ambulance ON client.id_client = sewa_ambulance.id_client INNER JOIN ambulance ON sewa_ambulance.id_ambulance = ambulance.id_ambulance WHERE MONTH(date) = $bulan AND YEAR(date) = $tahun AND sewa_ambulance.status_peminjaman = 1")->result();
 		}
 
 		if (!empty($data)) {
@@ -85,6 +73,7 @@ class ReportController extends CI_Controller
 			$newDate = date("d M Y", strtotime($originalDate));?>
 			<tr>
 				<td><?= $no++?></td>
+				<td><?= $row->nama?></td>
 				<td><?= $row->name?></td>
 				<td>Rp. <?= rupiah($row->harga)?></td>
 				<td><?= $newDate?></td>
@@ -108,9 +97,9 @@ class ReportController extends CI_Controller
 		);
 
 		if ($bulan == 00) {
-			$data	 	= $this->db->query("SELECT * FROM sewa_alkes INNER JOIN detail_sewa ON sewa_alkes.id_sewa = detail_sewa.id_sewa WHERE sewa_alkes.status = 2")->result();
+			$data	 	= $this->db->query("SELECT *, client.nama as name FROM client INNER JOIN sewa_alkes ON client.id_client = sewa_alkes.id_client INNER JOIN detail_sewa ON sewa_alkes.id_sewa = detail_sewa.id_sewa WHERE sewa_alkes.status = 2")->result();
 		} else {
-			$data	 			= $this->db->query("SELECT * FROM sewa_alkes INNER JOIN detail_sewa ON sewa_alkes.id_sewa = detail_sewa.id_sewa WHERE MONTH(date) = $bulan AND YEAR(date) = $tahun AND sewa_alkes.status = 2")->result();
+			$data	 			= $this->db->query("SELECT *, client.nama as name FROM client INNER JOIN sewa_alkes ON client.id_client = sewa_alkes.id_client INNER JOIN detail_sewa ON sewa_alkes.id_sewa = detail_sewa.id_sewa WHERE MONTH(date) = $bulan AND YEAR(date) = $tahun AND sewa_alkes.status = 2")->result();
 		}
 
 		if (!empty($data)) {
@@ -122,6 +111,7 @@ class ReportController extends CI_Controller
 			?>
 			<tr>
 				<td><?= $no++?></td>
+				<td><?= $row->name?></td>
 				<td><?= $row->nama?></td>
 				<td><?= $row->qty?></td>
 				<td>Rp. <?= rupiah($row->harga)?></td>
@@ -147,9 +137,9 @@ class ReportController extends CI_Controller
 		);
 
 		if ($bulan == 00) {
-			$data	 	= $this->db->query("SELECT * FROM transaction INNER JOIN invoice ON transaction.id = invoice.id_transaction WHERE transaction.status = 2")->result();
+			$data	 	= $this->db->query("SELECT * FROM client INNER JOIN transaction ON client.id_client = transaction.id_client INNER JOIN invoice ON transaction.id = invoice.id_transaction WHERE transaction.status = 2")->result();
 		} else {
-			$data	 			= $this->db->query("SELECT * FROM transaction INNER JOIN invoice ON transaction.id = invoice.id_transaction WHERE MONTH(date) = $bulan AND YEAR(date) = $tahun AND transaction.status = 2")->result();
+			$data	 			= $this->db->query("SELECT * FROM client INNER JOIN transaction ON client.id_client = transaction.id_client INNER JOIN invoice ON transaction.id = invoice.id_transaction WHERE MONTH(date) = $bulan AND YEAR(date) = $tahun AND transaction.status = 2")->result();
 		}
 
 		if (!empty($data)) {
@@ -160,6 +150,7 @@ class ReportController extends CI_Controller
 			?>
 			<tr>
 				<td><?= $no++?></td>
+				<td><?= $row->nama ?></td>	
 				<td><?= $row->nama_layanan?></td>
 				<td><?= $row->periode ?></td>
 				<td>Rp. <?= rupiah($row->harga)?></td>
@@ -286,7 +277,7 @@ class ReportController extends CI_Controller
 		$bulan = $this->input->post('bulan');
 		$tahun = date('Y');
 		if ($bulan == 00) {
-			$data	 			= $this->db->query("SELECT * FROM sewa_ambulance INNER JOIN ambulance ON sewa_ambulance.id_ambulance = ambulance.id_ambulance WHERE sewa_ambulance.status_peminjaman = 1")->result();
+			$data	 			= $this->db->query("SELECT * FROM client INNER JOIN sewa_ambulance ON client.id_client = sewa_ambulance.id_client INNER JOIN ambulance ON sewa_ambulance.id_ambulance = ambulance.id_ambulance WHERE sewa_ambulance.status_peminjaman = 1")->result();
 		} else {
 			$data	 			= $this->db->query("SELECT * FROM sewa_ambulance INNER JOIN ambulance ON sewa_ambulance.id_ambulance = ambulance.id_ambulance WHERE MONTH(date) = $bulan AND YEAR(date) = $tahun AND sewa_ambulance.status_peminjaman = 1")->result();
 		}
@@ -311,7 +302,8 @@ class ReportController extends CI_Controller
 		$pdf->writeHTML($html, true, false, true, false, '');
 		$table = '<table stripped style="border:1px solid #ddd;padding:4px;">';
 		$table .= '<tr align="cent" bgcolor="#ccc">
-						<th style="border:1px solid #ddd;background-color:#B8DAFF" width="300px">Nama Ambulance</th>
+						<th style="border:1px solid #ddd;background-color:#B8DAFF" width="150px">Nama Client</th>
+						<th style="border:1px solid #ddd;background-color:#B8DAFF" width="150px">Nama Ambulance</th>
 						<th style="border:1px solid #ddd;background-color:#B8DAFF" width="100px">Tanggal</th>
 						<th style="border:1px solid #ddd;background-color:#B8DAFF" width="100px">Harga</th>						
 					</tr>';
@@ -320,6 +312,7 @@ class ReportController extends CI_Controller
 			$originalDate = $row->date;
 			$newDate = date("d M Y", strtotime($originalDate));
 			$table .= '<tr align="left">
+							<td style="border:1px solid #ddd;">'.$row->nama.'</td>
 							<td style="border:1px solid #ddd;">'.$row->name.'</td>						
 							<td style="border:1px solid #ddd;">'.$newDate.'</td>
 							<td style="border:1px solid #ddd;">'.'Rp. '.rupiah($row->harga).'</td>
@@ -357,9 +350,9 @@ class ReportController extends CI_Controller
 		$bulan = $this->input->post('bulan');
 		$tahun = date('Y');
 		if ($bulan == 00) {
-			$data	 	= $this->db->query("SELECT * FROM sewa_alkes INNER JOIN detail_sewa ON sewa_alkes.id_sewa = detail_sewa.id_sewa WHERE sewa_alkes.status = 2")->result();
+			$data	 	= $this->db->query("SELECT *, client.nama as name FROM client INNER JOIN sewa_alkes ON client.id_client = sewa_alkes.id_client INNER JOIN detail_sewa ON sewa_alkes.id_sewa = detail_sewa.id_sewa WHERE sewa_alkes.status = 2")->result();
 		} else {
-			$data	 			= $this->db->query("SELECT * FROM sewa_alkes INNER JOIN detail_sewa ON sewa_alkes.id_sewa = detail_sewa.id_sewa WHERE MONTH(date) = $bulan AND YEAR(date) = $tahun AND sewa_alkes.status = 2")->result();
+			$data	 			= $this->db->query("SELECT *, client.nama as name FROM client INNER JOIN sewa_alkes ON client.id_client = sewa_alkes.id_client INNER JOIN detail_sewa ON sewa_alkes.id_sewa = detail_sewa.id_sewa WHERE MONTH(date) = $bulan AND YEAR(date) = $tahun AND sewa_alkes.status = 2")->result();
 		}
 		$pdf = new Pdf4(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 		$pdf->SetTitle('Laporan');
@@ -382,7 +375,8 @@ class ReportController extends CI_Controller
 		$pdf->writeHTML($html, true, false, true, false, '');
 		$table = '<table stripped style="border:1px solid #ddd;padding:4px;">';
 		$table .= '<tr align="cent" bgcolor="#ccc">
-						<th style="border:1px solid #ddd;background-color:#B8DAFF" width="180px">Nama Barang</th>
+						<th style="border:1px solid #ddd;background-color:#B8DAFF" width="90px">Nama Client</th>
+						<th style="border:1px solid #ddd;background-color:#B8DAFF" width="90px">Nama Barang</th>
 						<th style="border:1px solid #ddd;background-color:#B8DAFF" width="80px">Quantity</th>
 						<th style="border:1px solid #ddd;background-color:#B8DAFF" width="80px">Tanggal</th>						
 						<th style="border:1px solid #ddd;background-color:#B8DAFF" width="80px">Harga</th>
@@ -394,6 +388,7 @@ class ReportController extends CI_Controller
 			$newDate = date("d M Y", strtotime($originalDate));
 			$jumlah = $row->qty * $row->harga;
 			$table .= '<tr align="left">
+							<td style="border:1px solid #ddd;">'.$row->name.'</td>
 							<td style="border:1px solid #ddd;">'.$row->nama.'</td>						
 							<td style="border:1px solid #ddd;">'.$row->qty.'</td>
 							<td style="border:1px solid #ddd;">'.$newDate.'</td>
@@ -434,9 +429,9 @@ class ReportController extends CI_Controller
 		$bulan = $this->input->post('bulan');
 		$tahun = date('Y');
 		if ($bulan == 00) {
-			$data	 	= $this->db->query("SELECT * FROM transaction INNER JOIN invoice ON transaction.id = invoice.id_transaction WHERE transaction.status = 2")->result();
+			$data	 	= $this->db->query("SELECT * FROM client INNER JOIN transaction ON client.id_client = transaction.id_client INNER JOIN invoice ON transaction.id = invoice.id_transaction WHERE transaction.status = 2")->result();
 		} else {
-			$data	 			= $this->db->query("SELECT * FROM transaction INNER JOIN invoice ON transaction.id = invoice.id_transaction WHERE MONTH(date) = $bulan AND YEAR(date) = $tahun AND transaction.status = 2")->result();
+			$data	 			= $this->db->query("SELECT * FROM client INNER JOIN transaction ON client.id_client = transaction.id_client INNER JOIN invoice ON transaction.id = invoice.id_transaction WHERE MONTH(date) = $bulan AND YEAR(date) = $tahun AND transaction.status = 2")->result();
 		}
 		$pdf = new Pdf5(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 		$pdf->SetTitle('Laporan');
@@ -459,7 +454,8 @@ class ReportController extends CI_Controller
 		$pdf->writeHTML($html, true, false, true, false, '');
 		$table = '<table stripped style="border:1px solid #ddd;padding:4px;">';
 		$table .= '<tr align="cent" bgcolor="#ccc">
-						<th style="border:1px solid #ddd;background-color:#B8DAFF" width="200px">Nama Layanan</th>
+						<th style="border:1px solid #ddd;background-color:#B8DAFF" width="100px">Nama Client</th>
+						<th style="border:1px solid #ddd;background-color:#B8DAFF" width="100px">Nama Layanan</th>
 						<th style="border:1px solid #ddd;background-color:#B8DAFF" width="100px">Periode</th>
 						<th style="border:1px solid #ddd;background-color:#B8DAFF" width="100px">Tanggal</th>						
 						<th style="border:1px solid #ddd;background-color:#B8DAFF" width="100px">Harga</th>
@@ -469,6 +465,7 @@ class ReportController extends CI_Controller
 			$originalDate = $row->date;
 			$newDate = date("d M Y", strtotime($originalDate));
 			$table .= '<tr align="left">
+							<td style="border:1px solid #ddd;">'.$row->nama.'</td>
 							<td style="border:1px solid #ddd;">'.$row->nama_layanan.'</td>						
 							<td style="border:1px solid #ddd;">'.$row->periode.'</td>
 							<td style="border:1px solid #ddd;">'.$newDate.'</td>

@@ -17,15 +17,11 @@ class EmployeesController extends CI_Controller
 			$data = array(
 				'title' => "Data Karyawan"
 			);
+			$data['profesi']	 	= $this->db->query("SELECT * FROM profesi")->result();
 			$data['employees']	 	= $this->db->query("SELECT * FROM employees INNER JOIN profesi ON employees.id_profesi=profesi.id_profesi")->result();
 			$this->load->view('pages/Koordinator/employees/index.php', $data);
 		} else {
-			echo "
-				<script>
-					alert('Access Denied');
-					history.go(-1);
-				</script>
-			";	
+			redirect('/');	
 		}
 	}
 
@@ -35,15 +31,25 @@ class EmployeesController extends CI_Controller
 			$data = array(
 				'title' => "Data Karyawan"
 			);
+
+			$table = "employees";
+			$field = "nip";
+
+			$today = date('Y-md');
+
+			$prefix = $today;
+
+			$lastCode = $this->M_Employees->generate($prefix, $table, $field);
+
+			$noUrut = (int) substr($lastCode, -3, 3);
+			$noUrut++;
+
+			$data['newCode'] = $prefix . sprintf('%03s', $noUrut);
+
 			$data['profesi']	 	= $this->db->query("SELECT * FROM profesi")->result();
 			$this->load->view('pages/Koordinator/employees/add', $data);
 		} else {
-			echo "
-				<script>
-					alert('Access Denied');
-					history.go(-1);
-				</script>
-			";	
+			redirect('/');		
 		}
 	}
 
@@ -107,12 +113,7 @@ class EmployeesController extends CI_Controller
 			$data['employees']	 = $this->db->query("SELECT * FROM employees INNER JOIN profesi ON employees.id_profesi=profesi.id_profesi")->result();
 			$this->load->view('pages/Koordinator/employees/edit', $data);
 		} else {
-			echo "
-				<script>
-					alert('Access Denied');
-					history.go(-1);
-				</script>
-			";	
+			redirect('/');		
 		}
 	}
 
@@ -198,5 +199,55 @@ class EmployeesController extends CI_Controller
 		$where = array('id_employee' => $id);
 		$this->db->delete('employees', $where);
 		redirect('koordinator/employees');     
-    }
+	}
+	
+	public function filter_profesi()
+	{
+		$profesi = $_GET['filter_profesi'];
+		$data = array(
+			'title' => "Laporan Keuangan"
+		);
+
+		if ($profesi == 0) {
+			$data	 			= $this->db->query("SELECT * FROM employees INNER JOIN profesi ON employees.id_profesi=profesi.id_profesi")->result();
+		} else {
+			$data	 			= $this->db->query("SELECT * FROM employees INNER JOIN profesi ON employees.id_profesi=profesi.id_profesi WHERE employees.id_profesi = $profesi")->result();
+		}
+
+		if (!empty($data)) {
+			$no = 1;
+			foreach($data as $row) : ?>
+			<tr>
+				<td><?= $no++?></td>
+				<td><?= $row->name?></td>
+				<td><?= $row->nip?></td>
+				<td><?= $row->nama_bagian?></td>
+				<td><?= $row->phone?></td>
+				<td><?= $row->address?></td>
+				<td>
+				<?php if ($row->status === '0') { ?>
+					<div class="badges">
+						<span class="badge badge-warning">Non Active</span>
+					</div>
+				<?php } else { ?>
+					<div class="badges">
+						<span class="badge badge-primary">Active</span>
+					</div>
+				<?php } ?>	
+				</td>
+				<td><img src="<?= base_url('assets/img/employees/').$row->img?>" alt="" style="width: 50px; border-radius: 50%"></td>
+				<td>
+					<a href="<?php echo base_url('koordinator/employees/edit/').$row->id_employee ?>" class="btn btn-success" title="Edit"><i class="fa fa-edit"></i> </a>
+					<a href="<?php echo base_url('koordinator/employees/delete/').$row->id_employee ?>" class="btn btn-danger" onclick="javascript: return confirm('Are you sure want to Delete ?')" title="Delete"><i class="fa fa-trash"></i></a>
+				</td>
+			</tr>
+		<?php endforeach;?> <?php
+		} else {
+			?>
+			<tr>
+				<td colspan="9" align="center">Tidak ada Data</td>		
+			</tr>
+			<?php
+		}
+	}
 }

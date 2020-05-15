@@ -84,19 +84,18 @@ $route['superadmin/report/print_ambulance']          	= 'SuperAdmin/ReportContro
 $route['superadmin/report/print_alkes']               	= 'SuperAdmin/ReportController/print_alkes';
 $route['superadmin/report/print_layanan']              	= 'SuperAdmin/ReportController/print_layanan';
 
-$route['superadmin/calendar/ambulance']           		= 'SuperAdmin/CalendarController/ambulance';
-$route['superadmin/calendar/service']               	= 'SuperAdmin/CalendarController/service';
-$route['superadmin/calendar/alkes']           			= 'SuperAdmin/CalendarController/alkes';
-$route['superadmin/calendar/load_ambulance']           	= 'SuperAdmin/CalendarController/load_ambulance';
-$route['superadmin/calendar/load_service']              = 'SuperAdmin/CalendarController/load_service';
-$route['superadmin/calendar/load_alkes']           		= 'SuperAdmin/CalendarController/load_alkes';
+$route['superadmin/employees']           	            = 'SuperAdmin/EmployeesController';
+$route['superadmin/employees/filter_profesi']           = 'SuperAdmin/EmployeesController/filter_profesi';
+
+$route['superadmin/calendar']           	            = 'SuperAdmin/CalendarController';
+$route['superadmin/calendar/load_calendar']             = 'SuperAdmin/CalendarController/load_calendar';
 
 // ------------------------------------------------------------------------
 // Admin
 // ------------------------------------------------------------------------
 $route['admin/dashboard']	        			        = 'Admin/DashboardController';
 $route['admin/dashboard/service']                       = 'Admin/DashboardController/service';
-$route['admin/dashboard/alkes']                         = 'Admin/DashboardController/alkes';
+$route['admin/dashboard/service_']                      = 'Admin/DashboardController/service_';
 $route['admin/dashboard/ambulance']                     = 'Admin/DashboardController/ambulance';
 
 $route['admin/client']      					        = 'Admin/ClientController';
@@ -162,22 +161,6 @@ $route['admin/invoice/success']    						= 'Admin/InvoiceController/success';
 $route['admin/invoice/download/(:any)']			        = 'Admin/InvoiceController/download/$1';
 $route['admin/invoice/preview/(:any)']			        = 'Admin/InvoiceController/preview/$1';
 
-$route['admin/sewa_alkes']   					        = 'Admin/SewaAlkesController';
-$route['admin/sewa_alkes/store']				        = 'Admin/SewaAlkesController/store';
-$route['admin/sewa_alkes/request'] 						= 'Admin/SewaAlkesController/request';
-$route['admin/sewa_alkes/add_cart'] 					= 'Admin/SewaAlkesController/add_cart';
-$route['admin/sewa_alkes/view']     					= 'Admin/SewaAlkesController/view';
-$route['admin/sewa_alkes/load']    						= 'Admin/SewaAlkesController/load';
-$route['admin/sewa_alkes/remove']    					= 'Admin/SewaAlkesController/remove';
-$route['admin/sewa_alkes/clear']    					= 'Admin/SewaAlkesController/clear';
-$route['admin/sewa_alkes/detail/(:any)']			    = 'Admin/SewaAlkesController/detail/$1';
-$route['admin/sewa_alkes/failed']    					= 'Admin/SewaAlkesController/failed';
-$route['admin/sewa_alkes/confirm/(:any)']			    = 'Admin/SewaAlkesController/confirm/$1';
-$route['admin/sewa_alkes/cancel/(:any)']			    = 'Admin/SewaAlkesController/cancel/$1';
-$route['admin/sewa_alkes/success']    					= 'Admin/SewaAlkesController/success';
-$route['admin/sewa_alkes/download/(:any)']			    = 'Admin/SewaAlkesController/download/$1';
-$route['admin/sewa_alkes/preview/(:any)']			    = 'Admin/SewaAlkesController/preview/$1';
-
 $route['admin/pengeluaran']      					    = 'Admin/PengeluaranController';
 $route['admin/pengeluaran/create']		        	    = 'Admin/PengeluaranController/create';
 $route['admin/pengeluaran/store'] 		        	    = 'Admin/PengeluaranController/store';
@@ -187,7 +170,6 @@ $route['admin/pengeluaran/delete/(:any)']	            = 'Admin/PengeluaranContro
 
 $route['admin/laporan/pengeluaran']           			= 'Admin/ReportController/pengeluaran';
 $route['admin/report/ambulance']           			    = 'Admin/ReportController/ambulance';
-$route['admin/report/alkes']           					= 'Admin/ReportController/alkes';
 $route['admin/report/service']           			    = 'Admin/ReportController/service';
 $route['admin/report/filter']           			    = 'Admin/ReportController/filter';
 $route['admin/report/filter1']           			    = 'Admin/ReportController/filter1';
@@ -198,12 +180,8 @@ $route['admin/report/print_ambulance']          	    = 'Admin/ReportController/p
 $route['admin/report/print_alkes']               	    = 'Admin/ReportController/print_alkes';
 $route['admin/report/print_layanan']              	    = 'Admin/ReportController/print_layanan';
 
-$route['admin/calendar/ambulance']           			= 'Admin/CalendarController/ambulance';
-$route['admin/calendar/service']               			= 'Admin/CalendarController/service';
-$route['admin/calendar/alkes']           				= 'Admin/CalendarController/alkes';
-$route['admin/calendar/load_ambulance']           		= 'Admin/CalendarController/load_ambulance';
-$route['admin/calendar/load_service']               	= 'Admin/CalendarController/load_service';
-$route['admin/calendar/load_alkes']           			= 'Admin/CalendarController/load_alkes';
+$route['admin/calendar']           	            		= 'Admin/CalendarController';
+$route['admin/calendar/load_calendar']                  = 'Admin/CalendarController/load_calendar';
 
 // ------------------------------------------------------------------------
 // Koordinator
@@ -216,6 +194,7 @@ $route['koordinator/employees/store']		    	    = 'Koordinator/EmployeesControll
 $route['koordinator/employees/edit/(:any)']		        = 'Koordinator/EmployeesController/edit/$1';
 $route['koordinator/employees/update']			        = 'Koordinator/EmployeesController/update';
 $route['koordinator/employees/delete/(:any)']	        = 'Koordinator/EmployeesController/delete/$1';
+$route['koordinator/employees/filter_profesi']          = 'Koordinator/EmployeesController/filter_profesi';
 
 $route['koordinator/calendar']	    				    = 'Koordinator/CalendarController';
 $route['koordinator/calendar/load']	    			    = 'Koordinator/CalendarController/load';

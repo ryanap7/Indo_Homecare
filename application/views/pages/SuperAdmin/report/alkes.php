@@ -53,6 +53,7 @@
 												<th class="text-center">
 													#
 												</th>
+												<th>Nama Client</th>
 												<th>Nama Barang</th>
 												<th>Quantity</th>
 												<th>Harga</th>

@@ -62,6 +62,7 @@ class InvoiceController extends CI_Controller
 			$data['jasa_medis']				= $this->db->query("SELECT * FROM jasa_medis INNER JOIN category ON jasa_medis.id_category = category.id_category ORDER BY name DESC")->result();
 			$data['penunjang_medis']	 	= $this->db->query("SELECT * FROM penunjang_medis")->result();
 			$data['paket']				 	= $this->db->query("SELECT * FROM paket")->result();
+			$data['alkes']				 	= $this->db->query("SELECT * FROM alkes")->result();
 			$data['client']				 	= $this->db->query("SELECT * FROM client")->result();
 			$this->load->view('pages/Admin/transaksi/request.php', $data);
 		} else {
@@ -203,7 +204,7 @@ class InvoiceController extends CI_Controller
 		$where = array('id' => $id);
 		$this->db->update('transaction', $data, $where);
 
-		redirect('admin/invoice');
+		redirect('admin/invoice/download/'.$id);
 	}
 
 	public function cancel($id)
