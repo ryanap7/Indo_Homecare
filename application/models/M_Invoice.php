@@ -68,7 +68,6 @@ class M_invoice extends CI_Model
         $this->db->order_by($field, 'desc');
         $this->db->limit(1);
 
-        return $this->db->get($table)->row_array()[$field];
+        return $this->db->get($table)->row_array();
     }
 }
-?>

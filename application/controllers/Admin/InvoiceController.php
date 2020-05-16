@@ -5,12 +5,12 @@ class InvoiceController extends CI_Controller
 {
 	public function __construct()
 	{
-        parent::__construct();
-        if ($this->session->userdata('logged_in' !== TRUE)) {
-			redirect('/');	
+		parent::__construct();
+		if ($this->session->userdata('logged_in' !== TRUE)) {
+			redirect('/');
 		}
 	}
-	
+
 	public function index()
 	{
 		if ($this->session->userdata('role') === '2') {
@@ -20,19 +20,18 @@ class InvoiceController extends CI_Controller
 			$data['transaction']	 	= $this->db->query("SELECT * FROM transaction INNER JOIN client ON transaction.id_client=client.id_client WHERE transaction.status = 1")->result();
 			$this->load->view('pages/Admin/transaksi/index.php', $data);
 		} else {
-			redirect('/');	
+			redirect('/');
 		}
 	}
 
 	public function store()
-    {
+	{
 		$is_proses = $this->M_Invoice->index();
-		if($is_proses)
-		{
+		if ($is_proses) {
 			$this->cart->destroy();
-			
+
 			redirect('admin/invoice');
-		}else{
+		} else {
 			"Maaf Transaksi Anda tidak dapat Kami Proses";
 		}
 	}
@@ -43,7 +42,7 @@ class InvoiceController extends CI_Controller
 			$data = array(
 				'title' => "Transaksi"
 			);
-			
+
 			$table = "transaction";
 			$field = "no_invoice";
 
@@ -53,7 +52,7 @@ class InvoiceController extends CI_Controller
 
 			$lastCode = $this->M_Invoice->generate($prefix, $table, $field);
 
-			$noUrut = (int) substr($lastCode, -3, 3);
+			$noUrut = (int) substr($lastCode['no_invoice'], -3, 3);
 			$noUrut++;
 
 			$data['newCode'] = $prefix . sprintf('%03s', $noUrut);
@@ -66,7 +65,7 @@ class InvoiceController extends CI_Controller
 			$data['client']				 	= $this->db->query("SELECT * FROM client")->result();
 			$this->load->view('pages/Admin/transaksi/request.php', $data);
 		} else {
-			redirect('/');	
+			redirect('/');
 		}
 	}
 
@@ -108,11 +107,11 @@ class InvoiceController extends CI_Controller
 			$output .= '
 			<tbody>
 				<tr>
-					<td>'.$items['name'].'</td>
-					<td>'.$items['options']['Sesi'].'</td>
-					<td>Rp. '.rupiah($items['price']).'</td>
-					<td>Rp. '.rupiah($items['subtotal']).'</td>
-					<td><button type="button" name"Cancel" class="btn btn-danger remove fa fa-trash" id="'.$items['rowid'].'" title="Cancel"></button></td>
+					<td>' . $items['name'] . '</td>
+					<td>' . $items['options']['Sesi'] . '</td>
+					<td>Rp. ' . rupiah($items['price']) . '</td>
+					<td>Rp. ' . rupiah($items['subtotal']) . '</td>
+					<td><button type="button" name"Cancel" class="btn btn-danger remove fa fa-trash" id="' . $items['rowid'] . '" title="Cancel"></button></td>
 				</tr>
 			</tbody>
 			';
@@ -120,7 +119,7 @@ class InvoiceController extends CI_Controller
 		$output .= '
 				<tr>
 					<td colspan="4" align="right">Total</td>
-					<td >Rp. '.rupiah($this->cart->total()).'</td>
+					<td >Rp. ' . rupiah($this->cart->total()) . '</td>
 				</tr>
 			</table>
 		</div>
@@ -162,7 +161,7 @@ class InvoiceController extends CI_Controller
 			$data['invoice']		 	= $this->M_Invoice->get_id_invoice($id);
 			$this->load->view('pages/Admin/transaksi/detail.php', $data);
 		} else {
-			redirect('/');	
+			redirect('/');
 		}
 	}
 
@@ -177,7 +176,7 @@ class InvoiceController extends CI_Controller
 			$data['invoice']		 	= $this->M_Invoice->get_id_invoice($id);
 			$this->load->view('pages/Admin/transaksi/preview.php', $data);
 		} else {
-			redirect('/');	
+			redirect('/');
 		}
 	}
 
@@ -190,30 +189,30 @@ class InvoiceController extends CI_Controller
 			$data['transaction']	 	= $this->db->query("SELECT * FROM transaction INNER JOIN client ON transaction.id_client=client.id_client WHERE transaction.status = 0")->result();
 			$this->load->view('pages/Admin/transaksi/failed.php', $data);
 		} else {
-			redirect('/');	
+			redirect('/');
 		}
 	}
 
 	public function confirm($id)
-    {
-		
-		$data= array(
-			'status'			=> 2	
+	{
+
+		$data = array(
+			'status'			=> 2
 		);
-	
+
 		$where = array('id' => $id);
 		$this->db->update('transaction', $data, $where);
 
-		redirect('admin/invoice/download/'.$id);
+		redirect('admin/invoice/download/' . $id);
 	}
 
 	public function cancel($id)
-    {
-		
-		$data= array(
-			'status'			=> 0	
+	{
+
+		$data = array(
+			'status'			=> 0
 		);
-	
+
 		$where = array('id' => $id);
 		$this->db->update('transaction', $data, $where);
 
@@ -229,7 +228,7 @@ class InvoiceController extends CI_Controller
 			$data['transaction']	 	= $this->db->query("SELECT * FROM transaction INNER JOIN client ON transaction.id_client=client.id_client WHERE transaction.status = 2")->result();
 			$this->load->view('pages/Admin/transaksi/success.php', $data);
 		} else {
-			redirect('/');	
+			redirect('/');
 		}
 	}
 
@@ -245,69 +244,69 @@ class InvoiceController extends CI_Controller
 		$pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
 		$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
 		$pdf->SetHeaderData(0, 0, PDF_HEADER_TITLE, PDF_HEADER_STRING);
-		$pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
-		$pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+		$pdf->setHeaderFont(array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
+		$pdf->setFooterFont(array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
 		$pdf->SetFont('times', '', 10);
 		$pdf->AddPage();
 		$pdf->setCellPaddings(1, 1, 1, 1);
 		$pdf->setCellMargins(1, 1, 1, 1);
-		$pdf->SetFillColor(255, 255, 127);		
-		$pdf->WriteHTMLCell(0, 0, '', '','', 0, 1, 0, true, 'C', true);
+		$pdf->SetFillColor(255, 255, 127);
+		$pdf->WriteHTMLCell(0, 0, '', '', '', 0, 1, 0, true, 'C', true);
 		$client	 			= $this->db->query("SELECT * FROM transaction INNER JOIN client ON transaction.id_client=client.id_client WHERE transaction.id=$id")->result();
 		$transaction	 	= $this->M_Invoice->get_id_transaction($id);
 		$invoice		 	= $this->M_Invoice->get_id_invoice($id);
-		$html='';
+		$html = '';
 		$pdf->writeHTML($html, true, false, true, false, '');
 		$table = '<table stripped style="; padding:4px;">';
-		foreach($client as $row){
+		foreach ($client as $row) {
 			$originalDate = $row->date;
 			$newDate = date("d M Y", strtotime($originalDate));
 			$ex = $row->date_expired;
 			$Date = date("d M Y", strtotime($ex));
-			$table = '<table style="padding:4xpx;padding-top: -30px">';		
+			$table = '<table style="padding:4xpx;padding-top: -30px">';
 			$table .= '<tr>
 			<th style="" align="right"><strong>INVOICE #</strong></th>
-			<td>'.$row->no_invoice.'</td>
+			<td>' . $row->no_invoice . '</td>
 			</tr>';
 			$table .= '</table>';
-			$tablekiri = '<table style="padding-top: -30px">';		
+			$tablekiri = '<table style="padding-top: -30px">';
 			$tablekiri .= '<tr>
 			<th style="" align="left"><strong>DITAGIHKAN KEPADA</strong></th>
 			</tr>';
 			$tablekiri .= '</table>';
 		}
-		$pdf->writeHTMLCell(80, '', '', '', $tablekiri, 0, 0, 0, true, 'R', true);	
-		$pdf->WriteHTMLCell(0, 0, 125, '',$table, 0, 1, 0, true, 'R', true);
-		foreach($client as $row){
-		$table = '<table style="padding:4xpx;padding-top:-23px">';		
-		$table .= '<tr>
+		$pdf->writeHTMLCell(80, '', '', '', $tablekiri, 0, 0, 0, true, 'R', true);
+		$pdf->WriteHTMLCell(0, 0, 125, '', $table, 0, 1, 0, true, 'R', true);
+		foreach ($client as $row) {
+			$table = '<table style="padding:4xpx;padding-top:-23px">';
+			$table .= '<tr>
 						<th style="" align="right"><strong>Tanggal</strong></th>
-						<td>'.$newDate.'</td>
+						<td>' . $newDate . '</td>
 					</tr>';
-		$table .= '</table>';
-		$tablekiri = '<table style="padding-top: -22px">';		
+			$table .= '</table>';
+			$tablekiri = '<table style="padding-top: -22px">';
 			$tablekiri .= '<tr>
-			<th style="" align="left">'.$row->nama.'</th>
+			<th style="" align="left">' . $row->nama . '</th>
 			</tr>';
 			$tablekiri .= '</table>';
 		}
 		$pdf->writeHTMLCell(80, '', '', '', $tablekiri, 0, 0, 0, true, 'R', true);
-		$pdf->WriteHTMLCell(0, 0, 125, '',$table, 0, 1, 0, true, 'R', true);
-		foreach($client as $row){
-		$table = '<table style="padding:4xpx;padding-top:-16px">';		
-		$table .= '<tr>
+		$pdf->WriteHTMLCell(0, 0, 125, '', $table, 0, 1, 0, true, 'R', true);
+		foreach ($client as $row) {
+			$table = '<table style="padding:4xpx;padding-top:-16px">';
+			$table .= '<tr>
 						<th style="" align="right"><strong>Jatuh tempo</strong></th>
-						<td>'.$Date.'</td>
+						<td>' . $Date . '</td>
 					</tr>';
-		$table .= '</table>';
-		$tablekiri = '<table style="padding-top: -18px">';		
+			$table .= '</table>';
+			$tablekiri = '<table style="padding-top: -18px">';
 			$tablekiri .= '<tr>
-			<th style="" align="left">'.$row->phone.'</th>
+			<th style="" align="left">' . $row->phone . '</th>
 			</tr>';
 			$tablekiri .= '</table>';
 		}
 		$pdf->writeHTMLCell(80, '', '', '', $tablekiri, 0, 0, 0, true, 'R', true);
-		$pdf->WriteHTMLCell(0, 0, 125, '',$table, 0, 1, 0, true, 'R', true);
+		$pdf->WriteHTMLCell(0, 0, 125, '', $table, 0, 1, 0, true, 'R', true);
 		$table = '<table stripped style="border:1px solid #ddd;padding:4px;">';
 		$table .= '<tr align="center" bgcolor="#ccc">
 						<th style="border:1px solid #ddd;background-color:#B8DAFF" width="250px">Jasa</th>
@@ -315,70 +314,70 @@ class InvoiceController extends CI_Controller
 						<th style="border:1px solid #ddd;background-color:#B8DAFF" width="80px">Harga</th>
 						<th style="border:1px solid #ddd;background-color:#B8DAFF" width="90px">Jumlah</th>
 					</tr>';
-					
+
 		$subtotal = 0;
-		foreach($invoice as $row){
-		$table .= '<tr align="center">
-						<td style="border:1px solid #ddd;">'.$row->nama_layanan.'</td>						
-						<td style="border:1px solid #ddd;">'.$row->periode.'</td>
-						<td style="border:1px solid #ddd;">'.'Rp. '.rupiah($row->harga).'</td>
-						<td style="border:1px solid #ddd;">'.'Rp. '.rupiah($row->harga).'</td>
+		foreach ($invoice as $row) {
+			$table .= '<tr align="center">
+						<td style="border:1px solid #ddd;">' . $row->nama_layanan . '</td>						
+						<td style="border:1px solid #ddd;">' . $row->periode . '</td>
+						<td style="border:1px solid #ddd;">' . 'Rp. ' . rupiah($row->harga) . '</td>
+						<td style="border:1px solid #ddd;">' . 'Rp. ' . rupiah($row->harga) . '</td>
 					</tr>';
 		}
 		$table .= '</table>';
-		$pdf->WriteHTMLCell(0, 0, 15, '',$table, 0, 1, 0, true, 'C', true);
+		$pdf->WriteHTMLCell(0, 0, 15, '', $table, 0, 1, 0, true, 'C', true);
 
-		foreach($invoice as $row){
-		$subtotal += $row->harga;
-		$table = '<table style="padding:4xpx;">';		
-		$table .= '<tr>
+		foreach ($invoice as $row) {
+			$subtotal += $row->harga;
+			$table = '<table style="padding:4xpx;">';
+			$table .= '<tr>
 						<th style="" align="right">Subtotal</th>
-						<td>'.'Rp. '.rupiah($subtotal).'</td>
+						<td>' . 'Rp. ' . rupiah($subtotal) . '</td>
 					</tr>';
-		$table .= '</table>';
+			$table .= '</table>';
 		}
-		$pdf->WriteHTMLCell(0, 0, 125, '',$table, 0, 1, 0, true, 'R', true);
+		$pdf->WriteHTMLCell(0, 0, 125, '', $table, 0, 1, 0, true, 'R', true);
 
-		$table = '<table style="padding:4xpx;padding-top: -7px">';		
+		$table = '<table style="padding:4xpx;padding-top: -7px">';
 		$table .= '<tr>
 						<th style="" align="right">Total</th>
-						<td>'.'Rp. '.rupiah($subtotal).'</td>
+						<td>' . 'Rp. ' . rupiah($subtotal) . '</td>
 					</tr>';
 		$table .= '</table>';
-		$pdf->WriteHTMLCell(0, 0, 125, '',$table, 0, 1, 0, true, 'R', true);
+		$pdf->WriteHTMLCell(0, 0, 125, '', $table, 0, 1, 0, true, 'R', true);
 
-		foreach($invoice as $row){
-		$table = '<table style="padding:4xpx;padding-top: -7px;padding-left:-90px">';		
-		$table .= '<tr>
-						<td>Lunas Pada '.$newDate.'</td>
-						<td>'.'Rp. '.rupiah($subtotal).'</td>
+		foreach ($invoice as $row) {
+			$table = '<table style="padding:4xpx;padding-top: -7px;padding-left:-90px">';
+			$table .= '<tr>
+						<td>Lunas Pada ' . $newDate . '</td>
+						<td>' . 'Rp. ' . rupiah($subtotal) . '</td>
 					</tr>';
-		$table .= '</table>';
+			$table .= '</table>';
 		}
-		$pdf->WriteHTMLCell(0, 0, 125, '',$table, 0, 1, 0, true, 'R', true);
-		$table = '<table style="padding:4xpx;padding-top: -2px">';		
+		$pdf->WriteHTMLCell(0, 0, 125, '', $table, 0, 1, 0, true, 'R', true);
+		$table = '<table style="padding:4xpx;padding-top: -2px">';
 		$table .= '<tr>
 						<th style="" align="right"><strong>Jumlah Yang Harus Dibayar</strong></th>
 						<td>Rp. 0</td>
 					</tr>';
 		$table .= '</table>';
-		$pdf->WriteHTMLCell(0, 0, 125, '',$table, 0, 1, 0, true, 'R', true);
+		$pdf->WriteHTMLCell(0, 0, 125, '', $table, 0, 1, 0, true, 'R', true);
 
 		$pdf->SetFont('times', 'B', 12);
-		$table = '<table style="padding:4xpx;">';		
+		$table = '<table style="padding:4xpx;">';
 		$table .= '<tr>
 						<th style="font-size: 26px;color: red">Lunas</th>
 					</tr>';
 		$table .= '</table>';
-		$pdf->WriteHTMLCell(0, 0, 125, '',$table, 0, 1, 0, true, 'R', true);
+		$pdf->WriteHTMLCell(0, 0, 125, '', $table, 0, 1, 0, true, 'R', true);
 
 		$now = date('d-m-Y');
-		
+
 		$pdf->lastPage();
 		// ob_clean();
-		foreach($client as $row){
+		foreach ($client as $row) {
 			$invioce = $row->no_invoice;
 		}
-		$pdf->Output('Invoice-'.$invioce.'.pdf', 'I');
+		$pdf->Output('Invoice-' . $invioce . '.pdf', 'I');
 	}
 }
